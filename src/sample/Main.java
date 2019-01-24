@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -49,7 +50,7 @@ public class Main extends Application {
         primaryStage.setTitle("Drawing Tool");
         final Group root = new Group();
 
-        Scene scene = new Scene(root, 300, 400);
+        Scene scene = new Scene(root, 500, 400);
 
         // A group to hold all the drawn path elements
         lineGroup = new Group();
@@ -168,7 +169,21 @@ public class Main extends Application {
         vb.setLayoutY(20);
         vb.setLayoutX(10);
         vb.getChildren().addAll(toolBox, stackpane, canvas);
-        root.getChildren().addAll(vb, lineGroup);
+
+        VBox send = new VBox(20);
+        Label guessLabel = new Label("What did you draw?");
+        TextField guessField = new TextField();
+        Button guessButton = new Button("Done");
+        Label sendLabel = new Label("Are you done drawing?");
+        Button sendButton = new Button("Send");
+        send.getChildren().addAll(guessLabel, guessField, guessButton, sendLabel, sendButton);
+
+        HBox hb = new HBox(20);
+        hb.setPrefHeight(scene.getWidth() - 20);
+        hb.setLayoutX(20);
+        hb.setLayoutX(10);
+        hb.getChildren().addAll(send, vb);
+        root.getChildren().addAll(hb);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
