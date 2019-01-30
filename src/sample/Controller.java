@@ -18,14 +18,14 @@ public class Controller {
     public Button guessButton;
     public Button send;
 
-    public void init() {
-        lineGroup = new Group();
+    public void initialize() {
 
         canvas.setFill(Color.LIGHTGRAY);
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent me) {
+                System.out.println("canvas.setOnMousePressed()");
 
                 path = new Path();
                 path.setMouseTransparent(true);
@@ -40,6 +40,7 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
+                System.out.println("canvas.setOnMouseReleased()");
                 path = null;
 
             }
@@ -49,10 +50,12 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
+                System.out.println("canvas.setOnMouseDragged()");
 
                 // keep lines within rectangle
 
                 if (canvas.getBoundsInLocal().contains(me.getX(), me.getY())) {
+                    System.out.println(me);
                     path.getElements().add(new LineTo(me.getSceneX(), me.getSceneY()));
                 }
 
@@ -61,6 +64,11 @@ public class Controller {
     }
 
     public void clear() {
-        lineGroup.getChildren().removeAll(lineGroup.getChildren());
+        lineGroup.getChildren().remove(path);
+        path.getElements().removeAll();
+    }
+
+    public void send() {
+
     }
 }

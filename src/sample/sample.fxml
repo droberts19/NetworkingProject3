@@ -22,14 +22,19 @@
       <Label layoutX="358.0" layoutY="174.0" text="Are you done drawing?" />
       <Button fx:id="send" layoutX="355.0" layoutY="207.0" mnemonicParsing="false" text="Send to Other Player" />
       <Label layoutX="410.0" layoutY="254.0" text="Score" />
-      <Rectangle fx:id="canvas" fill="LIGHTGRAY" height="278.0" layoutX="21.0" layoutY="101.0" stroke="WHITE" strokeType="INSIDE" width="284.0">
-         <cursor>
-            <Cursor fx:constant="CROSSHAIR" />
-         </cursor></Rectangle>
       <Label layoutX="203.0" layoutY="14.0" text="PICTOGRAM">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <Group fx:id="lineGroup">
+         <children>
+            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="281.0" layoutX="14.0" layoutY="103.0" stroke="WHITE" strokeType="INSIDE" width="295.0">
+               <cursor>
+                  <Cursor fx:constant="CROSSHAIR" />
+               </cursor>
+            </Rectangle>
+         </children>
+      </Group>
    </children>
 </Pane>
