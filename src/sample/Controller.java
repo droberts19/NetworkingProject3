@@ -1,12 +1,21 @@
 package sample;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller {
 
@@ -17,6 +26,8 @@ public class Controller {
     public TextField guessText;
     public Button guessButton;
     public Button send;
+    public Rectangle receiveCanvas;
+    public Group secondLineGroup;
 
     public void initialize() {
 
@@ -64,10 +75,25 @@ public class Controller {
     }
 
     public void clear() {
-        lineGroup.getChildren().remove(path);
+        lineGroup.getChildren().removeAll(lineGroup.getChildren());
+        lineGroup.getChildren().add(canvas);
     }
 
     public void send() {
+        takeSnapShot(lineGroup);
+    }
 
+    public void takeSnapShot(Group lg){
+        WritableImage writableImage =
+                new WritableImage((int)lineGroup.getLayoutX(), (int)lineGroup.getLayoutY());
+        lg.snapshot(writableImage);
+
+        File file = new File("snapshot.png");
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+            System.out.println("snapshot saved: " + file.getAbsolutePath());
+        } catch (IOException ex) {
+            System.out.println("bad");
+        }
     }
 }
