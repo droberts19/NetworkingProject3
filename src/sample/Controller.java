@@ -65,7 +65,6 @@ public class Controller {
 
     public void clear() {
         lineGroup.getChildren().remove(path);
-        path.getElements().removeAll();
     }
 
     public void send() {
