@@ -1,12 +1,19 @@
 package sample;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import java.awt.image.BufferedImage;
 
 public class Controller {
 
@@ -17,6 +24,7 @@ public class Controller {
     public TextField guessText;
     public Button guessButton;
     public Button send;
+    public ImageView display;
 
     public void initialize() {
 
@@ -64,10 +72,20 @@ public class Controller {
     }
 
     public void clear() {
-        lineGroup.getChildren().remove(path);
+        lineGroup.getChildren().removeAll(lineGroup.getChildren());
+        lineGroup.getChildren().add(canvas);
     }
 
     public void send() {
+        System.out.println("pic displayed");
+        display.setImage(getImage(lineGroup));
+    }
 
+    Image getImage(Node node){
+        System.out.println("pic taken");
+        WritableImage snapshot = node.snapshot(new SnapshotParameters(), null);
+        BufferedImage buffImg = SwingFXUtils.fromFXImage(snapshot, null);
+        Image image = SwingFXUtils.toFXImage(buffImg, null );
+        return image;
     }
 }
