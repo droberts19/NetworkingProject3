@@ -3,19 +3,17 @@ package sample;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.image.BufferedImage;
 
 public class Controller {
 
@@ -26,8 +24,7 @@ public class Controller {
     public TextField guessText;
     public Button guessButton;
     public Button send;
-    public Rectangle receiveCanvas;
-    public Group secondLineGroup;
+    public ImageView display;
 
     public void initialize() {
 
@@ -80,20 +77,15 @@ public class Controller {
     }
 
     public void send() {
-        takeSnapShot(lineGroup);
+        System.out.println("pic displayed");
+        display.setImage(getImage(lineGroup));
     }
 
-    public void takeSnapShot(Group lg){
-        WritableImage writableImage =
-                new WritableImage((int)lineGroup.getLayoutX(), (int)lineGroup.getLayoutY());
-        lg.snapshot(writableImage);
-
-        File file = new File("snapshot.png");
-        try {
-            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-            System.out.println("snapshot saved: " + file.getAbsolutePath());
-        } catch (IOException ex) {
-            System.out.println("bad");
-        }
+    Image getImage(Node node){
+        System.out.println("pic taken");
+        WritableImage snapshot = node.snapshot(new SnapshotParameters(), null);
+        BufferedImage buffImg = SwingFXUtils.fromFXImage(snapshot, null);
+        Image image = SwingFXUtils.toFXImage(buffImg, null );
+        return image;
     }
 }

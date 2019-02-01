@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.*?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="637.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Button fx:id="btnClear" layoutX="138.0" layoutY="60.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
       <Label layoutX="368.0" layoutY="60.0" text="What did you draw?" />
@@ -36,11 +37,8 @@
             </Rectangle>
          </children>
       </Group>
-      <Group fx:id="secondLineGroup" layoutX="30.0" layoutY="406.0">
-         <children>
-            <Rectangle fx:id="receiveCanvas" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" height="243.0" stroke="WHITE" strokeType="INSIDE" width="267.0" />
-         </children>
-      </Group>
+      <Group fx:id="secondLineGroup" layoutX="30.0" layoutY="406.0" />
       <Button layoutX="390.0" layoutY="300.0" mnemonicParsing="false" text="Snapshot" />
+      <ImageView fx:id="display" fitHeight="226.0" fitWidth="288.0" layoutX="19.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>
