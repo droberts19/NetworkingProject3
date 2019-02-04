@@ -20,7 +20,7 @@ public class SyncData {
     synchronized boolean put(Object object) {
         if (amountData == 100) {
             System.out.println("put() failed.  Please get() some");
-            return;
+            return false;
         }
 
         queue[nextPutLocation] = object;
@@ -30,21 +30,23 @@ public class SyncData {
         } else {
             nextPutLocation = 0;
         }
+        System.out.println("put " + object);
+        return true;
     }
 
     synchronized Object get() {
             if (amountData == 0) {
-                System.out.println("get() failed.  Please put() some");
                 return null;
             }
 
-
+            int savenextGetLocation = nextGetLocation;
             if (nextGetLocation < 99) {
                 nextGetLocation = nextGetLocation + 1;
             } else {
             }
             amountData = amountData - 1;
-            return queue[nextGetLocation];
+        System.out.println("get " + queue[savenextGetLocation]);
+            return queue[savenextGetLocation];
 
         }
     }
