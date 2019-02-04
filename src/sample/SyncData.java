@@ -2,7 +2,7 @@ package sample;
 
 public class SyncData {
         // Fields
-        Object[] queue;
+        synchronized Object[] queue;
         int nextPutLocation;
         int nextGetLocation;
         int amountData;
@@ -17,7 +17,7 @@ public class SyncData {
 
         // Methods
 
-        Object get() {
+        synchronized Object get() {
             if (amountData == 0) {
                 System.out.println("get() failed.  Please put() some");
                 return null;
@@ -33,7 +33,7 @@ public class SyncData {
 
         }
 
-        void put(Object object) {
+       synchronized void put(Object object) {
             if (amountData == 100) {
                 System.out.println("put() failed.  Please get() some");
                 return;
