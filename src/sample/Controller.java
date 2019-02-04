@@ -25,8 +25,14 @@ public class Controller {
     public Button guessButton;
     public Button send;
     public ImageView display;
+    private SyncData syncData;
 
     public void initialize() {
+
+        syncData = new SyncData();
+        Threadz transmit = new Threadz(syncData, display);
+        Thread thread = new Thread(transmit);
+        thread.start();
 
         canvas.setFill(Color.LIGHTGRAY);
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -78,7 +84,13 @@ public class Controller {
 
     public void send() {
         System.out.println("pic displayed");
-        display.setImage(getImage(lineGroup));
+        Image sendPic = getImage(lineGroup);
+
+        if (sendPic != null) {
+            while (!syncData.put(sendPic)) {
+                Thread.currentThread().yield();
+            }
+        }
     }
 
     Image getImage(Node node){
