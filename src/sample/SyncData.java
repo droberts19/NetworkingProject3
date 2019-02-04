@@ -2,7 +2,7 @@ package sample;
 
 public class SyncData {
         // Fields
-        synchronized Object[] queue;
+        Object[] queue;
         int nextPutLocation;
         int nextGetLocation;
         int amountData;
@@ -17,7 +17,22 @@ public class SyncData {
 
         // Methods
 
-        synchronized Object get() {
+    synchronized boolean put(Object object) {
+        if (amountData == 100) {
+            System.out.println("put() failed.  Please get() some");
+            return;
+        }
+
+        queue[nextPutLocation] = object;
+        amountData = amountData + 1;
+        if (nextPutLocation < 99) {
+            nextPutLocation = nextPutLocation + 1;
+        } else {
+            nextPutLocation = 0;
+        }
+    }
+
+    synchronized Object get() {
             if (amountData == 0) {
                 System.out.println("get() failed.  Please put() some");
                 return null;
@@ -31,20 +46,5 @@ public class SyncData {
             amountData = amountData - 1;
             return queue[nextGetLocation];
 
-        }
-
-       synchronized void put(Object object) {
-            if (amountData == 100) {
-                System.out.println("put() failed.  Please get() some");
-                return;
-            }
-
-            queue[nextPutLocation] = object;
-            amountData = amountData + 1;
-            if (nextPutLocation < 99) {
-                nextPutLocation = nextPutLocation + 1;
-            } else {
-                nextPutLocation = 0;
-            }
         }
     }
