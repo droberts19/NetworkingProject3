@@ -27,8 +27,10 @@ public class Controller {
     public Button guessButton;
     public Button send;
     public ImageView display;
-    public Label name;
     private SyncData syncData;
+    public TextField answerText;
+    public Button answerButton;
+    public Label answerLabel;
 
     public void initialize() {
 
@@ -42,7 +44,6 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
-                System.out.println("canvas.setOnMousePressed()");
 
                 path = new Path();
                 path.setMouseTransparent(true);
@@ -57,7 +58,6 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
-                System.out.println("canvas.setOnMouseReleased()");
                 path = null;
 
             }
@@ -67,7 +67,6 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
-                System.out.println("canvas.setOnMouseDragged()");
 
                 // keep lines within rectangle
 
@@ -83,7 +82,7 @@ public class Controller {
     public void clear() {
         lineGroup.getChildren().removeAll(lineGroup.getChildren());
         lineGroup.getChildren().add(canvas);
-        lineGroup.getChildren().add(name);
+        answerLabel.setText("nothing");
     }
 
     public void send() {
@@ -95,8 +94,10 @@ public class Controller {
         }
     }
 
-    public void changeName() {
-        name.setText(guessText.getText());
+    public void guessAnswer() {
+        if (answerText.getText() == guessText.getText()) {
+            answerLabel.setText("YAY");
+        }
     }
 
     Image getImage(Node node){
