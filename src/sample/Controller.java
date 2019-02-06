@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.scene.shape.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Controller {
@@ -26,6 +28,9 @@ public class Controller {
     public Button send;
     public ImageView display;
     private SyncData syncData;
+    public TextField answerText;
+    public Button answerButton;
+    public Label answerLabel;
 
     public void initialize() {
 
@@ -39,7 +44,6 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
-                System.out.println("canvas.setOnMousePressed()");
 
                 path = new Path();
                 path.setMouseTransparent(true);
@@ -54,7 +58,6 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
-                System.out.println("canvas.setOnMouseReleased()");
                 path = null;
 
             }
@@ -64,7 +67,6 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
-                System.out.println("canvas.setOnMouseDragged()");
 
                 // keep lines within rectangle
 
@@ -80,12 +82,11 @@ public class Controller {
     public void clear() {
         lineGroup.getChildren().removeAll(lineGroup.getChildren());
         lineGroup.getChildren().add(canvas);
+        answerLabel.setText("nothing");
     }
 
     public void send() {
-        System.out.println("pic displayed");
         Image sendPic = getImage(lineGroup);
-
         if (sendPic != null) {
             while (!syncData.put(sendPic)) {
                 Thread.currentThread().yield();
@@ -93,8 +94,13 @@ public class Controller {
         }
     }
 
+    public void guessAnswer() {
+        if (answerText.getText() == guessText.getText()) {
+            answerLabel.setText("YAY");
+        }
+    }
+
     Image getImage(Node node){
-        System.out.println("pic taken");
         WritableImage snapshot = node.snapshot(new SnapshotParameters(), null);
         BufferedImage buffImg = SwingFXUtils.fromFXImage(snapshot, null);
         Image image = SwingFXUtils.toFXImage(buffImg, null );

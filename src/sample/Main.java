@@ -10,17 +10,14 @@ public class Main extends Application {
 
     private Controller controller;
 
-
-
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        Parent XMLroot = loader.load();
+        Parent root = loader.load();
         controller = loader.getController();
 
         primaryStage.setTitle("Pictogram");
-        primaryStage.setScene(new Scene(XMLroot, 550, 650));
+        primaryStage.setScene(new Scene(root, 550, 650));
         primaryStage.show();
     }
 
