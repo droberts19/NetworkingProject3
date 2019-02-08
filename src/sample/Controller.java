@@ -24,16 +24,17 @@ public class Controller {
     public Button btnClear;
     public Rectangle canvas;
     public TextField guessText;
-    public Button guessButton;
     public Button send;
     public ImageView display;
-    private SyncData syncData;
     public TextField answerText;
     public Button answerButton;
     public Label answerLabel;
+    private SyncData syncData;
+    private boolean isItSent;
 
     public void initialize() {
 
+        isItSent = false;
         syncData = new SyncData();
         Threadz transmit = new Threadz(syncData, display);
         Thread thread = new Thread(transmit);
@@ -71,7 +72,6 @@ public class Controller {
                 // keep lines within rectangle
 
                 if (canvas.getBoundsInLocal().contains(me.getX(), me.getY())) {
-                    System.out.println(me);
                     path.getElements().add(new LineTo(me.getSceneX(), me.getSceneY()));
                 }
 
@@ -83,6 +83,9 @@ public class Controller {
         lineGroup.getChildren().removeAll(lineGroup.getChildren());
         lineGroup.getChildren().add(canvas);
         answerLabel.setText("nothing");
+        display.setImage(null);
+        guessText.setText("");
+        answerText.setText("");
     }
 
     public void send() {
@@ -92,12 +95,22 @@ public class Controller {
                 Thread.currentThread().yield();
             }
         }
+        isItSent = true;
     }
 
     public void guessAnswer() {
-        if (answerText.getText() == guessText.getText()) {
-            answerLabel.setText("YAY");
+        if (isItSent == true) {
+            Label answer = new Label(guessText.getText());
+            System.out.println("label created with text: " + guessText.getText());
+            System.out.println("guess is: " + answerText.getText());
+            if (answerText.getText().equals(answer.getText())) {
+                System.out.println("they same");
+                answerLabel.setText("YAY");
+            } else {
+                answerLabel.setText("you suck");
+            }
         }
+        isItSent = false;
     }
 
     Image getImage(Node node){
