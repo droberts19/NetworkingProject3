@@ -17,7 +17,7 @@ public class Main extends Application {
         controller = loader.getController();
 
         primaryStage.setTitle("Pictogram");
-        primaryStage.setScene(new Scene(root, 550, 650));
+        primaryStage.setScene(new Scene(root, 550, 700));
         primaryStage.show();
     }
 

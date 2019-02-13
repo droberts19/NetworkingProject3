@@ -26,9 +26,12 @@ public class Controller {
     public TextField guessText;
     public Button send;
     public ImageView display;
+    public Label label1;
+    public Label label2;
+    public Label label3;
+    public Label label4;
     public TextField answerText;
-    public Button answerButton;
-    public Label answerLabel;
+    public Button send2;
     private SyncData syncData;
     private boolean isItSent;
 
@@ -82,7 +85,6 @@ public class Controller {
     public void clear() {
         lineGroup.getChildren().removeAll(lineGroup.getChildren());
         lineGroup.getChildren().add(canvas);
-        answerLabel.setText("nothing");
         display.setImage(null);
         guessText.setText("");
         answerText.setText("");
@@ -100,14 +102,13 @@ public class Controller {
 
     public void guessAnswer() {
         if (isItSent == true) {
-            Label answer = new Label(guessText.getText());
             System.out.println("label created with text: " + guessText.getText());
             System.out.println("guess is: " + answerText.getText());
-            if (answerText.getText().equals(answer.getText())) {
+            if (answerText.getText().equals(guessText.getText())) {
                 System.out.println("they same");
-                answerLabel.setText("YAY");
+                //answerLabel.setText("YAY");
             } else {
-                answerLabel.setText("you suck");
+                //answerLabel.setText("you suck");
             }
         }
         isItSent = false;
