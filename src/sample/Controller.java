@@ -34,8 +34,16 @@ public class Controller {
     public Button send2;
     private SyncData syncData;
     private boolean isItSent;
+    private SyncData inQueue;
+    private SyncData outQueue;
+    private boolean serverMode;
+    static boolean connected;
 
     public void initialize() {
+
+        inQueue = new SyncData();
+        outQueue = new SyncData();
+        connected = false;
 
         isItSent = false;
         syncData = new SyncData();
