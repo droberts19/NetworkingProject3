@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    static boolean multicastMode = false;
 
     private Controller controller;
 

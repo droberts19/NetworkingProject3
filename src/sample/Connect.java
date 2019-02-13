@@ -12,19 +12,19 @@ import java.util.ArrayList;
 public class Connect {
     private int connectionPort;
     private ServerSocket connectionSocket;
-    private SynchronizedQueue inTheQueue;
-    private SynchronizedQueue outQueue;
+    private SyncData inTheQueue;
+    private SyncData outQueue;
     private ArrayList<ObjectOutputStream> clientOutputStreams;
     private TextField statusText;
     private TextField yourNameText;
 
-    Connect(int port, SynchronizedQueue inQ, SynchronizedQueue outQ, TextField status, TextField name) {
+    Connect(int port, SyncData inQ, SyncData outQ, TextField status, TextField name) {
         connectionPort = port;
         inTheQueue = inQ;
         outQueue = outQ;
         statusText = status;
         yourNameText = name;
-        if (MainGuesser.multicastMode) {
+        if (Main.multicastMode) {
             clientOutputStreams = new ArrayList<ObjectOutputStream>();
         }
     }
@@ -45,7 +45,7 @@ public class Connect {
                 ObjectOutputStream dataWriter = new ObjectOutputStream(socketServerSide.getOutputStream());
                 ObjectInputStream dataReader = new ObjectInputStream(socketServerSide.getInputStream());
                 CommunicationOut communicationOut;
-                if (MainGuesser.multicastMode) {
+                if (Main.multicastMode) {
                     clientOutputStreams.add(dataWriter);
                     communicationOut = new CommunicationOut(socketServerSide, clientOutputStreams, outQueue, statusText);
                 } else {
@@ -66,7 +66,5 @@ public class Connect {
             ex.printStackTrace();
             System.out.println("Server ConnectToNewClients: networking failed.  Exiting...");
         }
-    }
-}
     }
 }
