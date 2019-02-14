@@ -17,9 +17,23 @@ public class Main extends Application {
         Parent root = loader.load();
         controller = loader.getController();
 
+        if (multicastMode) {
+            primaryStage.setTitle("PictureSERVER Multi-cast");
+        } else {
+            primaryStage.setTitle("PictureSERVER");
+        }
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+
         primaryStage.setTitle("Pictogram");
         primaryStage.setScene(new Scene(root, 550, 700));
         primaryStage.show();
+
+        controller = loader.getController();
+        controller.setServerMode();
+        controller.setStage(primaryStage);
+
+
     }
 
 
