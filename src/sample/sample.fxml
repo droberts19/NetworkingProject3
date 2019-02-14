@@ -44,8 +44,10 @@
       <TextField fx:id="IPAddressText" layoutX="50.0" layoutY="107.0" />
       <Label layoutX="118.0" layoutY="134.0" text="Port:" />
       <TextField fx:id="portText" layoutX="50.0" layoutY="151.0" />
-      <Button fx:id="beginGameButton" layoutX="108.0" layoutY="182.0" mnemonicParsing="false" text="Start" />
+      <Button fx:id="beginGameButton" layoutX="108.0" layoutY="182.0" mnemonicParsing="false" onAction="#startButtonPressed" text="Start" />
       <Label layoutX="110.0" layoutY="226.0" text="Status:" />
       <TextField fx:id="statusText" layoutX="49.0" layoutY="241.0" />
+      <Label layoutX="97.0" layoutY="268.0" text="Your Name:" />
+      <TextField fx:id="yourNameText" layoutX="48.0" layoutY="285.0" />
    </children>
 </Pane>

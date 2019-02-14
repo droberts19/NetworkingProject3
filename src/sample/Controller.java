@@ -15,8 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-
 import java.awt.image.BufferedImage;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -42,6 +40,7 @@ public class Controller {
     public TextField IPAddressText;
     public TextField statusText;
     public TextField portText;
+    public TextField yourNameText;
     private SyncData syncData;
     private boolean isItSent;
     private SyncData inQueue;
@@ -100,10 +99,6 @@ public class Controller {
         });
     }
 
-    public void setStage(Stage theStage) {
-        stage = theStage;
-    }
-
     public void clear() {
         lineGroup.getChildren().removeAll(lineGroup.getChildren());
         lineGroup.getChildren().add(canvas);
@@ -135,9 +130,6 @@ public class Controller {
         }
         isItSent = false;
     }
-
-
-
 
     void setServerMode() {
         serverMode = true;
@@ -178,8 +170,8 @@ public class Controller {
         if (serverMode) {
 
             // We're a server: create a thread for listening for connecting clients
-            Connect connectToClients = new Connect(Integer.parseInt(portText.getText()), inQueue, outQueue, statusText);
-            Thread connectThread = new Thread(connectToClients);
+            Connect connectToNewClients = new Connect(Integer.parseInt(portText.getText()), inQueue, outQueue, statusText, yourNameText);
+            Thread connectThread = new Thread(connectToNewClients);
             connectThread.start();
 
         } else {
@@ -201,7 +193,7 @@ public class Controller {
                 communicationOutThread.start();
 
                 //   Thread 2: handles communication FROM server TO client
-                CommunicationIn communicationIn = new CommunicationIn(socketClientSide, new ObjectInputStream(socketClientSide.getInputStream()), inQueue, null, statusText);
+                CommunicationIn communicationIn = new CommunicationIn(socketClientSide, new ObjectInputStream(socketClientSide.getInputStream()), inQueue, null, statusText, yourNameText);
                 Thread communicationInThread = new Thread(communicationIn);
                 communicationInThread.start();
 

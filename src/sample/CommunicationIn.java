@@ -18,7 +18,7 @@ public class CommunicationIn implements Runnable {
 
     // CommunicationIn reads from a Socket and puts data into the Program's inQueue
 
-    CommunicationIn(Socket s, ObjectInputStream in, SyncData inQ, SyncData outQ, TextField status) {
+    CommunicationIn(Socket s, ObjectInputStream in, SyncData inQ, SyncData outQ, TextField status, TextField name) {
         socket = s;
         messageReader = in;
         // CommunicationIn puts data read from the socket into the inQueue
@@ -26,6 +26,7 @@ public class CommunicationIn implements Runnable {
         // Only the server needs the outQueue from CommunicationIn
         outQueue = outQ;
         statusText = status;
+        yourNameText = name;
         serverMode = (outQ != null);
     }
 
