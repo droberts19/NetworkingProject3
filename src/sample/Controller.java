@@ -38,6 +38,10 @@ public class Controller {
     public Label label4;
     public TextField answerText;
     public Button send2;
+    public Button beginGameButton;
+    public TextField IPAddressText;
+    public TextField statusText;
+    public TextField portText;
     private SyncData syncData;
     private boolean isItSent;
     private SyncData inQueue;

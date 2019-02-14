@@ -1,11 +1,7 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-
-import javax.imageio.ImageIO;
 import java.io.EOFException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
