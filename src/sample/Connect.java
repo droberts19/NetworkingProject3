@@ -16,14 +16,12 @@ public class Connect {
     private SyncData outQueue;
     private ArrayList<ObjectOutputStream> clientOutputStreams;
     private TextField statusText;
-    private TextField yourNameText;
 
-    Connect(int port, SyncData inQ, SyncData outQ, TextField status, TextField name) {
+    Connect(int port, SyncData inQ, SyncData outQ, TextField status) {
         connectionPort = port;
         inTheQueue = inQ;
         outQueue = outQ;
         statusText = status;
-        yourNameText = name;
         if (Main.multicastMode) {
             clientOutputStreams = new ArrayList<ObjectOutputStream>();
         }
@@ -55,7 +53,7 @@ public class Connect {
                 communicationOutThread.start();
 
                 //   Thread 2: handles communication FROM that client TO server
-                CommunicationIn communicationIn = new CommunicationIn (socketServerSide, dataReader, inTheQueue, outQueue, statusText, yourNameText);
+                CommunicationIn communicationIn = new CommunicationIn (socketServerSide, dataReader, inTheQueue, outQueue, statusText);
                 Thread communicationInThread = new Thread(communicationIn);
                 communicationInThread.start();
         }
