@@ -10,7 +10,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class Connect {
+public class Connect implements Runnable{
     private int connectionPort;
     private ServerSocket connectionSocket;
     private SyncData inTheQueue;
