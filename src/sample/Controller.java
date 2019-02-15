@@ -115,8 +115,9 @@ public class Controller {
 
     public void send() {
         Image sendPic = getImage(lineGroup);
+        Message sendMessage = new Message(yourNameText.getText(), sendPic);
         if (sendPic != null) {
-            while (outQueue.put(sendPic)) {
+            while (outQueue.put(sendMessage)) {
                 Thread.currentThread().yield();
             }
         }
