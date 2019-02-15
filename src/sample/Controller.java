@@ -213,10 +213,4 @@ public class Controller {
         Image image = SwingFXUtils.toFXImage(buffImg, null );
         return image;
     }
-
-
-
-
-
-
 }

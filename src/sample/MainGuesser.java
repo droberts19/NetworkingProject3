@@ -20,10 +20,6 @@ public class MainGuesser extends Application {
         primaryStage.setTitle("Pictogram Guesser");
         primaryStage.setScene(new Scene(root, 550, 700));
         primaryStage.show();
-
-        controller = loader.getController();
-        controller.setClientMode();
-        controller.setStage(primaryStage);
     }
 
 

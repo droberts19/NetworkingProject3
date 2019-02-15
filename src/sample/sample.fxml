@@ -26,16 +26,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Group fx:id="lineGroup" layoutX="223.0" layoutY="-9.0">
-         <children>
-            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="#ab7d7d" height="281.0" layoutX="14.0" layoutY="109.0" stroke="WHITE" strokeType="INSIDE" width="295.0">
-               <cursor>
-                  <Cursor fx:constant="CROSSHAIR" />
-               </cursor>
-            </Rectangle>
-         </children>
-      </Group>
-      <ImageView fx:id="display" fitHeight="281.0" fitWidth="295.0" layoutX="237.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="display" fitHeight="280.0" fitWidth="300.0" layoutX="240.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="label3" layoutX="599.0" layoutY="381.0" text="What is your guess?" />
       <TextField fx:id="answerText" layoutX="576.0" layoutY="411.0" />
       <Label fx:id="label4" layoutX="586.0" layoutY="481.0" text="Are you ready to guess?" />
@@ -49,5 +40,10 @@
       <TextField fx:id="statusText" layoutX="49.0" layoutY="241.0" />
       <Label layoutX="97.0" layoutY="268.0" text="Your Name:" />
       <TextField fx:id="yourNameText" layoutX="48.0" layoutY="285.0" />
+      <Group fx:id="lineGroup" layoutX="240.0" layoutY="101.0">
+         <children>
+            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="280.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+         </children>
+      </Group>
    </children>
 </Pane>

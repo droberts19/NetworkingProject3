@@ -22,17 +22,11 @@ public class Main extends Application {
         } else {
             primaryStage.setTitle("PictureSERVER");
         }
-        primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
         primaryStage.setTitle("Pictogram");
-        primaryStage.setScene(new Scene(root, 550, 700));
+        primaryStage.setScene(new Scene(root, 800, 700));
         primaryStage.show();
-
-        controller = loader.getController();
-        controller.setServerMode();
-        controller.setStage(primaryStage);
-
 
     }
 
