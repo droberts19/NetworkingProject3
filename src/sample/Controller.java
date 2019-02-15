@@ -2,6 +2,7 @@ package sample;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
@@ -60,6 +61,7 @@ public class Controller {
         Thread thread = new Thread(transmit);
         thread.start();
 
+        canvas.setCursor(Cursor.CROSSHAIR);
         canvas.setFill(Color.LIGHTGRAY);
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
 

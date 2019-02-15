@@ -40,9 +40,9 @@
       <TextField fx:id="statusText" layoutX="49.0" layoutY="241.0" />
       <Label layoutX="97.0" layoutY="268.0" text="Your Name:" />
       <TextField fx:id="yourNameText" layoutX="48.0" layoutY="285.0" />
-      <Group fx:id="lineGroup" layoutX="240.0" layoutY="101.0">
+      <Group fx:id="lineGroup">
          <children>
-            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="280.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="280.0" layoutX="235.0" layoutY="100.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
          </children>
       </Group>
    </children>
