@@ -44,7 +44,6 @@ public class Controller {
     public TextField statusText;
     public TextField portText;
     public TextField yourNameText;
-    private SyncData syncData;
     private boolean isItSent;
     private SyncData inQueue;
     private SyncData outQueue;
@@ -59,10 +58,12 @@ public class Controller {
         connected = false;
 
         isItSent = false;
-        syncData = new SyncData();
-        Threadz transmit = new Threadz(syncData, display);
+        Threadz transmit = new Threadz(outQueue, display);
         Thread thread = new Thread(transmit);
         thread.start();
+        Threadz sendTrasmit = new Threadz(inQueue, display);
+        Thread thread1 = new Thread(sendTrasmit);
+        thread1.start();
 
         canvas.setCursor(Cursor.CROSSHAIR);
         canvas.setFill(Color.LIGHTGRAY);
@@ -115,7 +116,7 @@ public class Controller {
     public void send() {
         Image sendPic = getImage(lineGroup);
         if (sendPic != null) {
-            while (!syncData.put(sendPic)) {
+            while (outQueue.put(sendPic)) {
                 Thread.currentThread().yield();
             }
         }
@@ -165,7 +166,6 @@ public class Controller {
             // don't do anything else; the threads will stop and everything will be cleaned up by them.
             return;
         }
-
         // We can't start network connection if Port number is unknown
         if (portText.getText().isEmpty()) {
             // user did not enter a Port number, so we can't connect.
@@ -211,7 +211,6 @@ public class Controller {
                 ex.printStackTrace();
                 statusText.setText("Client start: networking failed. Exiting....");
             }
-
             // We connected!
         }
 
