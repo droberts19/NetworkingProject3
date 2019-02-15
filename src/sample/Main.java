@@ -15,19 +15,21 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
-        controller = loader.getController();
 
+        Thread.currentThread().setName("PictureViewer MainServer GUI Thread");
+
+        // Display the scene
         if (multicastMode) {
-            primaryStage.setTitle("PictureSERVER Multi-cast");
+            primaryStage.setTitle("PictureViewer SERVER Multi-cast");
         } else {
-            primaryStage.setTitle("PictureSERVER");
+            primaryStage.setTitle("PictureViewer SERVER");
         }
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
-        primaryStage.setTitle("Pictogram");
-        primaryStage.setScene(new Scene(root, 800, 700));
-        primaryStage.show();
-
+        controller = loader.getController();
+        controller.setServerMode();
+        controller.setStage(primaryStage);
     }
 
 

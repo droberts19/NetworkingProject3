@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
 import java.awt.image.BufferedImage;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -48,6 +50,7 @@ public class Controller {
     private SyncData outQueue;
     private boolean serverMode;
     static boolean connected;
+    private Stage stage;
 
     public void initialize() {
 
@@ -127,10 +130,15 @@ public class Controller {
                 System.out.println("they same");
                 //answerLabel.setText("YAY");
             } else {
+                System.out.println("they not");
                 //answerLabel.setText("you suck");
             }
         }
         isItSent = false;
+    }
+
+    public void setStage(Stage theStage) {
+        stage = theStage;
     }
 
     void setServerMode() {

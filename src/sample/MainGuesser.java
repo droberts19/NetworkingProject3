@@ -14,12 +14,17 @@ public class MainGuesser extends Application {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
-        controller = loader.getController();
 
+        Thread.currentThread().setName("PictureViewer MainClient GUI Thread");
 
-        primaryStage.setTitle("Pictogram Guesser");
-        primaryStage.setScene(new Scene(root, 550, 700));
+        // Display the scene
+        primaryStage.setTitle("PictureViewer CLIENT");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+        controller = loader.getController();
+        controller.setClientMode();
+        controller.setStage(primaryStage);
     }
 
 
