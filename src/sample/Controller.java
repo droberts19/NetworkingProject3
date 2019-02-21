@@ -126,7 +126,7 @@ public class Controller {
         isItSent = true;
     }
 
-    public void guessAnswer() {
+    public void guessAnswer() { //Fix the way that when it guesses//
         if (isItSent == true) {
             System.out.println("label created with text: " + guessText.getText());
             System.out.println("guess is: " + answerText.getText());

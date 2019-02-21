@@ -50,4 +50,5 @@ public class Message implements Serializable {
         // this writes data Image using this custom code
         ImageIO.write(SwingFXUtils.fromFXImage(data, null), "png", outStream);
     }
+
 }
