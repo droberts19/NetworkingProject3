@@ -14,12 +14,12 @@ public class Threadz implements Runnable {
 
     public void run() {
         while (!Thread.interrupted()) {
-            Image next = (Image)syncData.get();
+            Message next = (Message) syncData.get();
             while (next == null) {
                 Thread.currentThread().yield();
-                next = (Image)syncData.get();
+                next = (Message) syncData.get();
             }
-            display.setImage(next);
+            display.setImage(next.data());
         }
     }
 }

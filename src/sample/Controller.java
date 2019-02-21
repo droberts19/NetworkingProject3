@@ -44,12 +44,14 @@ public class Controller {
     public TextField statusText;
     public TextField portText;
     public TextField yourNameText;
+    public Button changePlayerMode;
     private boolean isItSent;
     private SyncData inQueue;
     private SyncData outQueue;
     private boolean serverMode;
     static boolean connected;
     private Stage stage;
+    private boolean isGuesser;
 
     public void initialize() {
 
@@ -214,7 +216,19 @@ public class Controller {
             }
             // We connected!
         }
+    }
 
+    public void setGuesserMode() {
+        if (isGuesser) {
+            isGuesser = false;
+            label1.setText("What did you draw?");
+            label2.setText("Are you done drawing?");
+        } else {
+            isGuesser = true;
+            label1.setText("What is your guess?");
+            label2.setText("Are you ready to guess?");
+        }
+        System.out.println(isGuesser);
     }
 
     Image getImage(Node node){

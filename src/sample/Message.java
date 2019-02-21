@@ -14,10 +14,13 @@ public class Message implements Serializable {
     private String sender;
     // Image is transient means that we have to provide our own code to read/write object
     private transient Image data;
+    // the guess
+    private String guess;
 
-    Message(String who, Image what) {
+    Message(String who, Image what, String when) {
         sender = who;
         data = what;
+        guess = when;
     }
 
     String sender() {
@@ -27,6 +30,8 @@ public class Message implements Serializable {
     Image data() {
         return data;
     }
+
+    String guess() {return guess;}
 
     public String toString() {
         return "\"" + data + "\" from: " + sender;
