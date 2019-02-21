@@ -36,7 +36,6 @@ public class Controller {
     public Label label1;
     public Label label2;
     public Label label3;
-    public Label label4;
     public TextField answerText;
     public Button send2;
     public Button beginGameButton;
@@ -160,7 +159,7 @@ public class Controller {
         serverMode = false;
         beginGameButton.setText("Connect");
         // display the IP address for the local computer
-        IPAddressText.setText("127.0.0.1");
+        IPAddressText.setText("10.85.218.107");
     }
 
     public void startButtonPressed() {

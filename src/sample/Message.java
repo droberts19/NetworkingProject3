@@ -34,7 +34,7 @@ public class Message implements Serializable {
     String guess() {return guess;}
 
     public String toString() {
-        return "\"" + data + "\" from: " + sender;
+        return "\"" + data + "\" from: " + sender + "\" with guess: " + guess;
     }
 
     private void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {
