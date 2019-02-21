@@ -22,8 +22,6 @@ public class Threadz implements Runnable {
                 Thread.currentThread().yield();
                 next = (Message) syncData.get();
             }
-            display.setImage(next.data());
-            whatIsTheDrawing.setText("Drawing: " + next.guess());
         }
     }
 }
