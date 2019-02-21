@@ -23,6 +23,16 @@ public class Message implements Serializable {
         guess = when;
     }
 
+    String sender() {
+        return sender;
+    }
+
+    Image data() {
+        return data;
+    }
+
+    String guess() {return guess;}
+
     public String toString() {
         return "\"" + data + "\" from: " + sender;
     }
