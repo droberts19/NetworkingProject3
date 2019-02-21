@@ -140,7 +140,7 @@ public class Controller {
         isItSent = false;
     }
 
-    public void setStage(Stage theStage) {
+     public void setStage(Stage theStage) {
         stage = theStage;
     }
 

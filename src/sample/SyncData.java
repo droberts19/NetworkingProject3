@@ -2,10 +2,10 @@ package sample;
 
 public class SyncData {
         // Fields
-        Object[] queue;
-        int nextPutLocation;
-        int nextGetLocation;
-        int amountData;
+        private Object[] queue;
+        private int nextPutLocation;
+        private int nextGetLocation;
+        private int amountData;
 
         // Constructor
         SyncData() {
@@ -37,13 +37,13 @@ public class SyncData {
                 return null;
             }
 
-            int savenextGetLocation = nextGetLocation;
+            int saveNextGetLocation = nextGetLocation;
             if (nextGetLocation < 99) {
                 nextGetLocation = nextGetLocation + 1;
             } else {
             }
             amountData = amountData - 1;
-            return queue[savenextGetLocation];
+            return queue[saveNextGetLocation];
 
         }
     }
