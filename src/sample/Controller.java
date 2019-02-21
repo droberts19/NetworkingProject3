@@ -60,10 +60,10 @@ public class Controller {
         connected = false;
 
         isItSent = false;
-        Threadz transmit = new Threadz(outQueue, display);
+        Threadz transmit = new Threadz(outQueue, display, label3);
         Thread thread = new Thread(transmit);
         thread.start();
-        Threadz sendTrasmit = new Threadz(inQueue, display);
+        Threadz sendTrasmit = new Threadz(inQueue, display, label3);
         Thread thread1 = new Thread(sendTrasmit);
         thread1.start();
 
@@ -117,7 +117,7 @@ public class Controller {
 
     public void send() {
         Image sendPic = getImage(lineGroup);
-        Message sendMessage = new Message(yourNameText.getText(), sendPic);
+        Message sendMessage = new Message(yourNameText.getText(), sendPic, guessText.getText());
         if (sendPic != null) {
             while (outQueue.put(sendMessage)) {
                 Thread.currentThread().yield();

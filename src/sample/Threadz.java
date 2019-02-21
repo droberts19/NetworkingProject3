@@ -1,15 +1,18 @@
 package sample;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Threadz implements Runnable {
     private SyncData syncData;
     private ImageView display;
+    private Label whatIsTheDrawing;
 
-    Threadz(SyncData sd, ImageView iv) {
+    Threadz(SyncData sd, ImageView iv, Label lb) {
         syncData = sd;
         display = iv;
+        whatIsTheDrawing = lb;
     }
 
     public void run() {
@@ -20,6 +23,7 @@ public class Threadz implements Runnable {
                 next = (Message) syncData.get();
             }
             display.setImage(next.data());
+            whatIsTheDrawing.setText("Drawing: " + next.guess());
         }
     }
 }
