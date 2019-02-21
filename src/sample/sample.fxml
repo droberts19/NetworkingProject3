@@ -27,9 +27,9 @@
          </font>
       </Label>
       <ImageView fx:id="display" fitHeight="280.0" fitWidth="300.0" layoutX="205.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="label3" layoutX="537.0" layoutY="382.0" text="What is your guess?" />
+      <Label layoutX="537.0" layoutY="382.0" text="What is your guess?" />
       <TextField fx:id="answerText" layoutX="516.0" layoutY="411.0" />
-      <Label fx:id="label4" layoutX="524.0" layoutY="482.0" text="Are you ready to guess?" />
+      <Label layoutX="524.0" layoutY="482.0" text="Are you ready to guess?" />
       <Button fx:id="send2" layoutX="573.0" layoutY="517.0" mnemonicParsing="false" onAction="#guessAnswer" text="Send" />
       <Label layoutX="62.0" layoutY="92.0" text="IP Address:" />
       <TextField fx:id="IPAddressText" layoutX="15.0" layoutY="107.0" />
@@ -46,5 +46,6 @@
          </children>
       </Group>
       <Button fx:id="changePlayerMode" layoutX="525.0" layoutY="57.0" mnemonicParsing="false" text="Change Player Mode" />
+      <Label fx:id="label3" layoutX="545.0" layoutY="277.0" text="Drawing: " />
    </children>
 </Pane>
