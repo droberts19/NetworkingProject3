@@ -119,6 +119,10 @@ public class Controller {
         isItSent = true;
     }
 
+    public void guess() {
+
+    }
+
     public void setStage(Stage theStage) {
         stage = theStage;
     }
@@ -132,6 +136,7 @@ public class Controller {
             ex.printStackTrace();
             statusText.setText("Server start: getLocalHost failed. Exiting....");
         }
+
     }
 
     void setClientMode() {
@@ -197,16 +202,13 @@ public class Controller {
     }
 
     public void setGuesserMode() {
-        if (isGuesser) {
-            isGuesser = false;
-            label1.setText("What did you draw?");
-            label2.setText("Are you done drawing?");
-        } else {
-            isGuesser = true;
-            label1.setText("What is your guess?");
-            label2.setText("Are you ready to guess?");
-        }
-        System.out.println(isGuesser);
+        label1.setText("What is your guess?");
+        label2.setText("Are you ready to guess?");
+    }
+
+    public void setDrawerMode() {
+        label1.setText("What did you draw?");
+        label2.setText("Are you done drawing?");
     }
 
     Image getImage(Node node){

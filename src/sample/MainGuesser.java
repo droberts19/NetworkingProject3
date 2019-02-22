@@ -24,6 +24,7 @@ public class MainGuesser extends Application {
 
         controller = loader.getController();
         controller.setClientMode();
+        controller.setDrawerMode();
         controller.setStage(primaryStage);
     }
 
