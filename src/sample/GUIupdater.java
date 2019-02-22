@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
@@ -22,9 +23,11 @@ public class GUIupdater implements Runnable {
                 next = (Message) syncData.get();
             }
             Message finalMessage = next;
+            Platform.runLater(() -> {
+                display.setImage(finalMessage.data();
+                whatIsTheDrawing.setText("Drawing: " + finalMessage.guess());
+            });
 
-            display.setImage(next.data());
-            whatIsTheDrawing.setText("Drawing: " + next.guess());
         }
     }
 }

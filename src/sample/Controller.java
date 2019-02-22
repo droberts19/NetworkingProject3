@@ -36,8 +36,6 @@ public class Controller {
     public Label label1;
     public Label label2;
     public Label label3;
-    public TextField answerText;
-    public Button send2;
     public Button beginGameButton;
     public TextField IPAddressText;
     public TextField statusText;
@@ -108,7 +106,6 @@ public class Controller {
         lineGroup.getChildren().add(display);
         display.setImage(null);
         guessText.setText("");
-        answerText.setText("");
     }
 
     public void send() {
@@ -120,21 +117,6 @@ public class Controller {
             }
         }
         isItSent = true;
-    }
-
-    public void guessAnswer() { //Fix the way that when it guesses//
-        if (isItSent == true) {
-            System.out.println("label created with text: " + guessText.getText());
-            System.out.println("guess is: " + answerText.getText());
-            if (answerText.getText().equals(guessText.getText())) {
-                System.out.println("they same");
-                //answerLabel.setText("YAY");
-            } else {
-                System.out.println("they not");
-                //answerLabel.setText("you suck");
-            }
-        }
-        isItSent = false;
     }
 
     public void setStage(Stage theStage) {
