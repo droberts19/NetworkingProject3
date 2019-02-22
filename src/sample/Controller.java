@@ -95,13 +95,10 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent me) {
-
                 // keep lines within rectangle
-
                 if (canvas.getBoundsInLocal().contains(me.getX(), me.getY())) {
                     path.getElements().add(new LineTo(me.getSceneX(), me.getSceneY()));
                 }
-
             }
         });
     }
@@ -109,6 +106,7 @@ public class Controller {
     public void clear() {
         lineGroup.getChildren().removeAll(lineGroup.getChildren());
         lineGroup.getChildren().add(canvas);
+        lineGroup.getChildren().add(display);
         display.setImage(null);
         guessText.setText("");
         answerText.setText("");
@@ -140,7 +138,7 @@ public class Controller {
         isItSent = false;
     }
 
-     public void setStage(Stage theStage) {
+    public void setStage(Stage theStage) {
         stage = theStage;
     }
 

@@ -21,6 +21,8 @@ public class GUIupdater implements Runnable {
                 Thread.currentThread().yield();
                 next = (Message) syncData.get();
             }
+            Message finalMessage = next;
+
             display.setImage(next.data());
             whatIsTheDrawing.setText("Drawing: " + next.guess());
         }

@@ -26,7 +26,6 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="display" fitHeight="280.0" fitWidth="300.0" layoutX="205.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="537.0" layoutY="382.0" text="What is your guess?" />
       <TextField fx:id="answerText" layoutX="516.0" layoutY="411.0" />
       <Label layoutX="524.0" layoutY="482.0" text="Are you ready to guess?" />
@@ -43,6 +42,7 @@
       <Group fx:id="lineGroup">
          <children>
             <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="280.0" layoutX="205.0" layoutY="100.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+            <ImageView fx:id="display" fitHeight="280.0" fitWidth="300.0" layoutX="205.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Group>
       <Button fx:id="changePlayerMode" layoutX="525.0" layoutY="57.0" mnemonicParsing="false" onAction="#setGuesserMode" text="Change Player Mode" />
