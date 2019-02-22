@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    static boolean multicastMode = false;
+    static boolean multicastMode = true;
 
     private Controller controller;
 
@@ -29,7 +29,7 @@ public class Main extends Application {
 
         controller = loader.getController();
         controller.setServerMode();
-        controller.setGuesserMode();
+        controller.setDrawerMode();
         controller.setStage(primaryStage);
     }
 
