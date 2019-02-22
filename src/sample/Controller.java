@@ -66,7 +66,7 @@ public class Controller {
         Thread thread1 = new Thread(sendTrasmit);
         thread1.start();
 
-        canvas.setFill(Color.LIGHTGRAY);
+        canvas.setCursor(Cursor.CROSSHAIR);
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
