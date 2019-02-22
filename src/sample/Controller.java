@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -41,6 +42,7 @@ public class Controller {
     public TextField statusText;
     public TextField portText;
     public TextField yourNameText;
+    public Label label4;
     public Button changePlayerMode;
     private boolean isItSent;
     private SyncData inQueue;
@@ -105,7 +107,8 @@ public class Controller {
         lineGroup.getChildren().add(canvas);
         lineGroup.getChildren().add(display);
         display.setImage(null);
-        guessText.setText("");
+        label3.setText("");
+        label4.setText("");
     }
 
     public void send() {
@@ -120,7 +123,11 @@ public class Controller {
     }
 
     public void guess() {
-
+        if (guessText.getText().equals(label3.getText())) {
+            label4.setText("YAY");
+        } else {
+            label4.setText("NOO");
+        }
     }
 
     public void setStage(Stage theStage) {
@@ -204,6 +211,12 @@ public class Controller {
     public void setGuesserMode() {
         label1.setText("What is your guess?");
         label2.setText("Are you ready to guess?");
+        send.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                guess();
+            }
+        });
 
     }
 

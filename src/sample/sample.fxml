@@ -41,6 +41,7 @@
             <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="280.0" layoutX="205.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
          </children>
       </Group>
-      <Label fx:id="label3" layoutX="545.0" layoutY="277.0" text="Drawing: " />
+      <Label fx:id="label3" layoutX="564.0" layoutY="267.0" prefHeight="17.0" prefWidth="70.0" />
+      <Label fx:id="label4" layoutX="564.0" layoutY="312.0" prefHeight="17.0" prefWidth="70.0" />
    </children>
 </Pane>
