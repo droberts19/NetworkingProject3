@@ -112,7 +112,7 @@ public class Controller {
         Image sendPic = getImage(lineGroup);
         Message sendMessage = new Message(yourNameText.getText(), sendPic, guessText.getText());
         if (sendPic != null) {
-            while (outQueue.put(sendMessage)) {
+            while (!outQueue.put(sendMessage)) {
                 Thread.currentThread().yield();
             }
         }
@@ -204,6 +204,7 @@ public class Controller {
     public void setGuesserMode() {
         label1.setText("What is your guess?");
         label2.setText("Are you ready to guess?");
+
     }
 
     public void setDrawerMode() {

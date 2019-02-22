@@ -29,6 +29,7 @@ public class SyncData {
         } else {
             nextPutLocation = 0;
         }
+        System.out.println("PUT " + object);
         return true;
     }
 
