@@ -59,10 +59,10 @@ public class Controller {
         connected = false;
 
         isItSent = false;
-        Threadz transmit = new Threadz(outQueue, display, label3);
+        GUIupdater transmit = new GUIupdater(outQueue, display, label3);
         Thread thread = new Thread(transmit);
         thread.start();
-        Threadz sendTrasmit = new Threadz(inQueue, display, label3);
+        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3);
         Thread thread1 = new Thread(sendTrasmit);
         thread1.start();
 

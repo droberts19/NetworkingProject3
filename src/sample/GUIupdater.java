@@ -3,12 +3,12 @@ package sample;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-public class Threadz implements Runnable {
+public class GUIupdater implements Runnable {
     private SyncData syncData;
     private ImageView display;
     private Label whatIsTheDrawing;
 
-    Threadz(SyncData sd, ImageView iv, Label lb) {
+    GUIupdater(SyncData sd, ImageView iv, Label lb) {
         syncData = sd;
         display = iv;
         whatIsTheDrawing = lb;
