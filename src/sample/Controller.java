@@ -43,14 +43,11 @@ public class Controller {
     public TextField portText;
     public TextField yourNameText;
     public Label label4;
-    public Button changePlayerMode;
-    private boolean isItSent;
+    private Stage stage;
     private SyncData inQueue;
     private SyncData outQueue;
     private boolean serverMode;
     static boolean connected;
-    private Stage stage;
-    private boolean isGuesser;
 
     public void initialize() {
 
@@ -58,7 +55,6 @@ public class Controller {
         outQueue = new SyncData();
         connected = false;
 
-        isItSent = false;
         GUIupdater transmit = new GUIupdater(outQueue, display, label3);
         Thread thread = new Thread(transmit);
         thread.start();
@@ -106,7 +102,6 @@ public class Controller {
         lineGroup.getChildren().removeAll(lineGroup.getChildren());
         lineGroup.getChildren().add(canvas);
         lineGroup.getChildren().add(display);
-        display.setImage(null);
         label3.setText("");
         label4.setText("");
     }
@@ -119,7 +114,6 @@ public class Controller {
                 Thread.currentThread().yield();
             }
         }
-        isItSent = true;
     }
 
     public void guess() {
