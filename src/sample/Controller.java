@@ -18,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
 import java.awt.image.BufferedImage;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -43,6 +42,9 @@ public class Controller {
     public TextField portText;
     public TextField yourNameText;
     public Label label4;
+    public Button draw;
+    public Button guess;
+    public Label turn;
     private Stage stage;
     private SyncData inQueue;
     private SyncData outQueue;
@@ -61,6 +63,8 @@ public class Controller {
         GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3);
         Thread thread1 = new Thread(sendTrasmit);
         thread1.start();
+
+        portText.setText("5000");
 
         canvas.setCursor(Cursor.CROSSHAIR);
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -99,16 +103,18 @@ public class Controller {
     }
 
     public void clear() {
+        display.setImage(null);
         lineGroup.getChildren().removeAll(lineGroup.getChildren());
-        lineGroup.getChildren().add(canvas);
         lineGroup.getChildren().add(display);
+        lineGroup.getChildren().add(canvas);
         label3.setText("");
         label4.setText("");
+        guessText.setText("");
     }
 
     public void send() {
         Image sendPic = getImage(lineGroup);
-        Message sendMessage = new Message(yourNameText.getText(), sendPic, guessText.getText());
+        ImageMessage sendMessage = new ImageMessage(yourNameText.getText(), sendPic, guessText.getText());
         if (sendPic != null) {
             while (!outQueue.put(sendMessage)) {
                 Thread.currentThread().yield();
@@ -122,6 +128,34 @@ public class Controller {
         } else {
             label4.setText("NOO");
         }
+        GuessMessage sendMessage = new GuessMessage(yourNameText.getText(), guessText.getText());
+        while (!outQueue.put(sendMessage)) {
+            Thread.currentThread().yield();
+        }
+    }
+
+    public void setGuesserMode() {
+        label1.setText("What is your guess?");
+        label2.setText("Are you ready to guess?");
+        send.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                guess();
+            }
+        });
+        send.setText("Guess");
+    }
+
+    public void setDrawerMode() {
+        label1.setText("What did you draw?");
+        label2.setText("Are you done drawing?");
+        send.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                send();
+            }
+        });
+        send.setText("Send");
     }
 
     public void setStage(Stage theStage) {
@@ -200,23 +234,6 @@ public class Controller {
             }
             // We connected!
         }
-    }
-
-    public void setGuesserMode() {
-        label1.setText("What is your guess?");
-        label2.setText("Are you ready to guess?");
-        send.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                guess();
-            }
-        });
-
-    }
-
-    public void setDrawerMode() {
-        label1.setText("What did you draw?");
-        label2.setText("Are you done drawing?");
     }
 
     Image getImage(Node node){

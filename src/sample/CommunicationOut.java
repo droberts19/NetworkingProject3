@@ -40,12 +40,12 @@ public class CommunicationOut implements Runnable {
         try {
             while (Controller.connected && !Thread.interrupted()) {
                 // keep getting from output Queue until it has a message
-                Message message = (Message) outQueue.get();
+                ImageMessage message = (ImageMessage) outQueue.get();
                 while (message == null) {
                     Thread.currentThread().yield();
-                    message = (Message) outQueue.get();
+                    message = (ImageMessage) outQueue.get();
                 }
-                Message finalMessage = message;
+                ImageMessage finalMessage = message;
                 System.out.println("CommunicationOut GOT: " + message);
 
                 // write message to 1 or many sockets

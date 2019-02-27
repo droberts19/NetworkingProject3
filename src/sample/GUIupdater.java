@@ -17,17 +17,16 @@ public class GUIupdater implements Runnable {
 
     public void run() {
         while (!Thread.interrupted()) {
-            Message next = (Message) syncData.get();
+            ImageMessage next = (ImageMessage) syncData.get();
             while (next == null) {
                 Thread.currentThread().yield();
-                next = (Message) syncData.get();
+                next = (ImageMessage) syncData.get();
             }
-            Message finalMessage = next;
+            ImageMessage finalMessage = next;
             Platform.runLater(() -> {
                 display.setImage(finalMessage.data());
                 whatIsTheDrawing.setText(finalMessage.guess());
             });
-
         }
     }
 }

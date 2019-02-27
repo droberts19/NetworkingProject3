@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 // Serializable means that objects of this class can be read/written over ObjectStreams
-public class Message implements Serializable {
+public class ImageMessage implements Serializable {
     // Message includes both sender ID and Image being sent
     private String sender;
     // Image is transient means that we have to provide our own code to read/write object
@@ -17,7 +17,7 @@ public class Message implements Serializable {
     // the guess
     private String guess;
 
-    Message(String who, Image what, String when) {
+    ImageMessage(String who, Image what, String when) {
         sender = who;
         data = what;
         guess = when;
