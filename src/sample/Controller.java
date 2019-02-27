@@ -178,7 +178,7 @@ public class Controller {
         serverMode = false;
         beginGameButton.setText("Connect");
         // display the IP address for the local computer
-        IPAddressText.setText("10.85.218.107");
+        IPAddressText.setText("10.85.216.52");
     }
 
     public void startButtonPressed() {
