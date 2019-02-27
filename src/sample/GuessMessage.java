@@ -1,5 +1,11 @@
 package sample;
 
+<<<<<<< Updated upstream
+=======
+import javafx.embed.swing.SwingFXUtils;
+
+import javax.imageio.ImageIO;
+>>>>>>> Stashed changes
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -33,6 +39,7 @@ public class GuessMessage implements Serializable {
         // this reads sender String with default code
         inStream.defaultReadObject();
         // this reads data Image using this custom code
+
     }
 
     private void writeObject(ObjectOutputStream outStream) throws IOException {
