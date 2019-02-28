@@ -14,25 +14,25 @@ import java.io.Serializable;
 // Serializable means that objects of this class can be read/written over ObjectStreams
 public class GuessMessage implements Serializable {
     // Message includes both sender ID and Image being sent
-    private String sender;
+    private String sendeR;
     // the guess
-    private String guess;
+    private String guesS;
 
     GuessMessage(String who, String when) {
-        sender = who;
-        guess = when;
+        sendeR = who;
+        guesS = when;
     }
 
-    String sender() {
-        return sender;
+    String sendeR() {
+        return sendeR;
     }
 
-    String guess() {
-        return guess;
+    String guesS() {
+        return guesS;
     }
 
     public String toString() {
-        return "\" from: " + sender + "\" with guess: " + guess;
+        return "\" from: " + sendeR + "\" with guess: " + guesS;
     }
 
     private void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {

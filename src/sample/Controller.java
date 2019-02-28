@@ -128,10 +128,6 @@ public class Controller {
         } else {
             label4.setText("NOO");
         }
-        GuessMessage sendMessage = new GuessMessage(yourNameText.getText(), guessText.getText());
-        while (!outQueue.put(sendMessage)) {
-            Thread.currentThread().yield();
-        }
     }
 
     public void setGuesserMode() {
