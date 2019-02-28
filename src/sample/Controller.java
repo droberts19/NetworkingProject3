@@ -45,6 +45,7 @@ public class Controller {
     public Button draw;
     public Button guess;
     public Label turn;
+    private boolean guesser;
     private Stage stage;
     private SyncData inQueue;
     private SyncData outQueue;
@@ -110,6 +111,11 @@ public class Controller {
         label3.setText("");
         label4.setText("");
         guessText.setText("");
+        if (guesser) {
+            setDrawerMode();
+        } else {
+            setGuesserMode();
+        }
     }
 
     public void send() {
@@ -131,6 +137,7 @@ public class Controller {
     }
 
     public void setGuesserMode() {
+        guesser = true;
         label1.setText("What is your guess?");
         label2.setText("Are you ready to guess?");
         send.setOnAction(new EventHandler<ActionEvent>() {
@@ -143,6 +150,7 @@ public class Controller {
     }
 
     public void setDrawerMode() {
+        guesser = false;
         label1.setText("What did you draw?");
         label2.setText("Are you done drawing?");
         send.setOnAction(new EventHandler<ActionEvent>() {
