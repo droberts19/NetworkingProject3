@@ -56,6 +56,7 @@ public class Connect implements Runnable{
                 // Create data reader and writer from those stream (NOTE: ObjectOutputStream MUST be created FIRST)
                 ObjectOutputStream dataWriter = new ObjectOutputStream(socketServerSide.getOutputStream());
                 ObjectInputStream dataReader = new ObjectInputStream(socketServerSide.getInputStream());
+                controller.addClient();
 
                 // The server prepares for communication with EACH client by creating 2 new threads:
                 //   Thread 1: handles communication TO that client FROM server
