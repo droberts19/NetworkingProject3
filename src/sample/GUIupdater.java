@@ -22,11 +22,16 @@ public class GUIupdater implements Runnable {
                 Thread.currentThread().yield();
                 next = (ImageMessage) syncData.get();
             }
+
             ImageMessage finalMessage = next;
             Platform.runLater(() -> {
                 display.setImage(finalMessage.data());
                 whatIsTheDrawing.setText(finalMessage.guess());
+
             });
+            //Have initial set game modes
+
         }
     }
+
 }

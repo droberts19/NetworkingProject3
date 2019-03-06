@@ -149,6 +149,8 @@ public class Controller {
         send.setText("Guess");
     }
 
+
+
     public void setDrawerMode() {
         guesser = false;
         label1.setText("What did you draw?");

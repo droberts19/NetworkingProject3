@@ -66,6 +66,14 @@ public class CommunicationIn implements Runnable {
                     System.out.println("CommunicationIn PUT into InputQueue: " + message);
                     Platform.runLater(() -> statusText.setText("PUT into InputQueue: " + finalMessage));
 
+                    //Before Server and MULTICAST: set server as main (but not playable) and clients as drawer or Guesser before hand)
+                    if(serverMode && Main.multicastMode){
+
+
+                    }
+
+
+
                     // IF SERVER and MULTICAST: also put that incoming message on the OutputQueue so ALL clients see it
                     if (serverMode && Main.multicastMode) {
                         putSucceeded = outQueue.put(message);
