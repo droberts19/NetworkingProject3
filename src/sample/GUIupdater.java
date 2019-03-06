@@ -25,6 +25,7 @@ public class GUIupdater implements Runnable {
 
             ImageMessage finalMessage = next;
             Platform.runLater(() -> {
+                display.setImage(null);
                 display.setImage(finalMessage.data());
                 whatIsTheDrawing.setText(finalMessage.guess());
 

@@ -119,20 +119,20 @@ public class Controller {
     }
 
     public void send() {
-        Image sendPic = getImage(lineGroup);
-        ImageMessage sendMessage = new ImageMessage(yourNameText.getText(), sendPic, guessText.getText());
-        if (sendPic != null) {
-            while (!outQueue.put(sendMessage)) {
-                Thread.currentThread().yield();
+        if (guesser) {
+            if (guessText.getText().equals(label3.getText())) {
+                label4.setText("YAY");
+            } else {
+                label4.setText("NOO");
             }
-        }
-    }
-
-    public void guess() {
-        if (guessText.getText().equals(label3.getText())) {
-            label4.setText("YAY");
         } else {
-            label4.setText("NOO");
+            Image sendPic = getImage(lineGroup);
+            ImageMessage sendMessage = new ImageMessage(yourNameText.getText(), sendPic, guessText.getText());
+            if (sendPic != null) {
+                while (!outQueue.put(sendMessage)) {
+                    Thread.currentThread().yield();
+                }
+            }
         }
     }
 
@@ -140,12 +140,6 @@ public class Controller {
         guesser = true;
         label1.setText("What is your guess?");
         label2.setText("Are you ready to guess?");
-        send.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                guess();
-            }
-        });
         send.setText("Guess");
     }
 
@@ -155,12 +149,6 @@ public class Controller {
         guesser = false;
         label1.setText("What did you draw?");
         label2.setText("Are you done drawing?");
-        send.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                send();
-            }
-        });
         send.setText("Send");
     }
 
