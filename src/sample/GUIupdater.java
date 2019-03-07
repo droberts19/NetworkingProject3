@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
+
 public class GUIupdater implements Runnable {
     private SyncData syncData;
     private ImageView display;

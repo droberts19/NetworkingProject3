@@ -179,6 +179,7 @@ public class Controller {
     }
 
     public void arrayList(){
+
         new ArrayList<String>();
 
         nameOfClients = new SyncData();
