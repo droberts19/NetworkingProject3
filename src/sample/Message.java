@@ -7,8 +7,9 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Message {
+public class Message implements Serializable {
     // Message includes both sender ID and Image being sent
     private String sender;
 
@@ -48,14 +49,14 @@ public class Message {
         return "\"" + data + "\" from: " + sender + "\" with guess: " + text;
     }
 
-    public void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {
+    private void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {
         // this reads sender String with default code
         inStream.defaultReadObject();
         // this reads data Image using this custom code
         data = SwingFXUtils.toFXImage(ImageIO.read(inStream), null);
     }
 
-    public void writeObject(ObjectOutputStream outStream) throws IOException {
+    private void writeObject(ObjectOutputStream outStream) throws IOException {
         // this writes sender String with default code
         outStream.defaultWriteObject();
         // this writes data Image using this custom code
