@@ -40,16 +40,17 @@ public class CommunicationIn implements Runnable {
             // Read all incoming communication
             // dataReader reads objects from 1 socket
             while (Controller.connected && !Thread.interrupted()) {
-                ImageMessage message = null;
+                Message
+                        message = null;
                 while (message == null) {
                     try {
-                        message = (ImageMessage) messageReader.readObject();
+                        message = (Message) messageReader.readObject();
                     } catch (EOFException ex) {
                         // EOFException means data has NOT been written yet; so yield and try reading again
                         Thread.currentThread().yield();
                     }
                 }
-                ImageMessage finalMessage = message;
+                Message finalMessage = message;
                 System.out.println("CommunicationIn: RECEIVING " + message);
                 // Receiving incoming message!!!
 

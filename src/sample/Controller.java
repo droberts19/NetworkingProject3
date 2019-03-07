@@ -127,7 +127,7 @@ public class Controller {
             }
         } else {
             Image sendPic = getImage(lineGroup);
-            ImageMessage sendMessage = new ImageMessage(yourNameText.getText(), sendPic, guessText.getText());
+            Message sendMessage = new Message(yourNameText.getText(), sendPic, guessText.getText(), 2);
             if (sendPic != null) {
                 while (!outQueue.put(sendMessage)) {
                     Thread.currentThread().yield();

@@ -17,17 +17,17 @@ public class GUIupdater implements Runnable {
 
     public void run() {
         while (!Thread.interrupted()) {
-            ImageMessage next = (ImageMessage) syncData.get();
+            Message next = (Message) syncData.get();
             while (next == null) {
                 Thread.currentThread().yield();
-                next = (ImageMessage) syncData.get();
+                next = (Message) syncData.get();
             }
 
-            ImageMessage finalMessage = next;
+            Message finalMessage = next;
             Platform.runLater(() -> {
                 display.setImage(null);
                 display.setImage(finalMessage.data());
-                whatIsTheDrawing.setText(finalMessage.guess());
+                whatIsTheDrawing.setText(finalMessage.text());
 
             });
             //Have initial set game modes

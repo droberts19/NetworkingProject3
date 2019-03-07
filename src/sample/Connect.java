@@ -2,8 +2,6 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
-import org.w3c.dom.Text;
-
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
