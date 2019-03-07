@@ -23,6 +23,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -53,6 +54,8 @@ public class Controller {
     static boolean connected;
 
     public void initialize() {
+
+        new ArrayList<String>();
 
         inQueue = new SyncData();
         outQueue = new SyncData();

@@ -48,14 +48,14 @@ public class Message {
         return "\"" + data + "\" from: " + sender + "\" with guess: " + text;
     }
 
-    private void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {
+    public void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {
         // this reads sender String with default code
         inStream.defaultReadObject();
         // this reads data Image using this custom code
         data = SwingFXUtils.toFXImage(ImageIO.read(inStream), null);
     }
 
-    private void writeObject(ObjectOutputStream outStream) throws IOException {
+    public void writeObject(ObjectOutputStream outStream) throws IOException {
         // this writes sender String with default code
         outStream.defaultWriteObject();
         // this writes data Image using this custom code
