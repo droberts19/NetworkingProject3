@@ -2,6 +2,8 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
+
+import javax.crypto.Cipher;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 public class Connect implements Runnable{
     private int connectionPort;
     private ServerSocket connectionSocket;
-    private SyncData inTheQueue;
+    private SyncData inQueue;
     private SyncData outQueue;
     private ArrayList<ObjectOutputStream> clientOutputStreams;
     private TextField statusText;
@@ -19,7 +21,7 @@ public class Connect implements Runnable{
 
     Connect(int port, SyncData inQ, SyncData outQ, TextField status, TextField name) {
         connectionPort = port;
-        inTheQueue = inQ;
+        inQueue = inQ;
         outQueue = outQ;
         statusText = status;
         yourNameText = name;
@@ -33,8 +35,8 @@ public class Connect implements Runnable{
         System.out.println("ConnectToNewClients thread running");
 
         try {
-            // ONLY server handles connections on a thread
-            // Every time a separate client connects, the server creates 2 new threads:
+            // ONLY server connects to new clients on this thread
+            // Every time a new client connects, the server creates 2 extra threads:
             //   1 thread for communication FROM that new client TO server
             //   1 thread for communication TO that client FROM server
 
@@ -54,7 +56,6 @@ public class Connect implements Runnable{
                 // Create data reader and writer from those stream (NOTE: ObjectOutputStream MUST be created FIRST)
                 ObjectOutputStream dataWriter = new ObjectOutputStream(socketServerSide.getOutputStream());
                 ObjectInputStream dataReader = new ObjectInputStream(socketServerSide.getInputStream());
-                controller.addClient();
 
                 // The server prepares for communication with EACH client by creating 2 new threads:
                 //   Thread 1: handles communication TO that client FROM server
@@ -71,12 +72,12 @@ public class Connect implements Runnable{
                 communicationOutThread.start();
 
                 //   Thread 2: handles communication FROM that client TO server
-                CommunicationIn communicationIn = new CommunicationIn(socketServerSide, dataReader, inTheQueue, outQueue, statusText, yourNameText);
+                CommunicationIn communicationIn = new CommunicationIn(socketServerSide, dataReader, inQueue, outQueue, statusText, yourNameText);
                 Thread communicationInThread = new Thread(communicationIn);
                 communicationInThread.start();
             }
 
-            // Server has been stopped (ClientServerPictureViewerController.connected == false)
+            // Server has been stopped (TwoWayCommunicationController.connected == false)
             // So close its connection socket
             connectionSocket.close();
             System.out.println("ConnectToNewClients thread ended; connectionSocket closed.");

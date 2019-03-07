@@ -68,7 +68,6 @@ public class CommunicationOut implements Runnable {
 
                 Platform.runLater(() -> statusText.setText("SENT: " + finalMessage));
                 System.out.println("CommunicationOut SENT: " + message);
-
             }
 
             // while loop ended!

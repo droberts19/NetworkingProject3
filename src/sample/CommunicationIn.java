@@ -40,8 +40,7 @@ public class CommunicationIn implements Runnable {
             // Read all incoming communication
             // dataReader reads objects from 1 socket
             while (Controller.connected && !Thread.interrupted()) {
-                Message
-                        message = null;
+                Message message = null;
                 while (message == null) {
                     try {
                         message = (Message) messageReader.readObject();
@@ -66,14 +65,6 @@ public class CommunicationIn implements Runnable {
                     }
                     System.out.println("CommunicationIn PUT into InputQueue: " + message);
                     Platform.runLater(() -> statusText.setText("PUT into InputQueue: " + finalMessage));
-
-                    //Before Server and MULTICAST: set server as main (but not playable) and clients as drawer or Guesser before hand)
-                    if(serverMode && Main.multicastMode){
-
-
-                    }
-
-
 
                     // IF SERVER and MULTICAST: also put that incoming message on the OutputQueue so ALL clients see it
                     if (serverMode && Main.multicastMode) {
