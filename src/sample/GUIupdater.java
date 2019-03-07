@@ -15,6 +15,8 @@ public class GUIupdater implements Runnable {
         whatIsTheDrawing = lb;
     }
 
+
+
     public void run() {
         while (!Thread.interrupted()) {
             Message next = (Message) syncData.get();
@@ -30,9 +32,10 @@ public class GUIupdater implements Runnable {
                 whatIsTheDrawing.setText(finalMessage.text());
 
             });
-            //Have initial set game modes
 
-        }
+
+
+            }
     }
 
 }

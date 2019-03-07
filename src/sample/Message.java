@@ -18,11 +18,8 @@ public class Message implements Serializable {
     // Image is transient means that we have to provide our own code to read/write object
     private transient Image data;
 
-    // There are 3 different message types:
-    // if type == 1, this is a guess message, so text is the guess attempt
-    // if type == 2, this is a image message, so text is the guess answer and data actually contains an image
-    // if type == 3, this is a communication message, so text is the communication text
-    private int type;
+    private  int type;
+
 
     Message(String who, Image what, String when, int why) {
         sender = who;

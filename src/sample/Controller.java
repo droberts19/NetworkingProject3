@@ -178,6 +178,22 @@ public class Controller {
         IPAddressText.setText("10.85.216.52");
     }
 
+    public void arrayList(){
+        new ArrayList<String>();
+
+        nameOfClients = new SyncData();
+        numberOfClients = new SyncData();
+
+        GUIupdater transmit = new GUIupdater(nameOfClients, numberOfClients);
+        Thread thread = new Thread(transmit);
+        thread.start();
+        GUIupdater sendTrasmit = new GUIupdater(nameOfClients, numberOfClients);
+        Thread thread1 = new Thread(sendTrasmit);
+        thread1.start();
+
+
+    }
+
     public void startButtonPressed() {
         // If we're already connected, start button should be disabled
         if (connected) {
