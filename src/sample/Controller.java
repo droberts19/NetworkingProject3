@@ -46,25 +46,27 @@ public class Controller {
     public Button draw;
     public Button guess;
     public Label turn;
+    public Label player;
     private boolean guesser;
     private Stage stage;
     private SyncData inQueue;
     private SyncData outQueue;
     private boolean serverMode;
     static boolean connected;
+    private ArrayList<String> nameOfClients;
 
     public void initialize() {
 
-        new ArrayList<String>();
+        nameOfClients = new ArrayList<String>();
 
         inQueue = new SyncData();
         outQueue = new SyncData();
         connected = false;
 
-        GUIupdater transmit = new GUIupdater(outQueue, display, label3);
+        GUIupdater transmit = new GUIupdater(outQueue, display, label3, player, nameOfClients);
         Thread thread = new Thread(transmit);
         thread.start();
-        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3);
+        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3, player, nameOfClients);
         Thread thread1 = new Thread(sendTrasmit);
         thread1.start();
 
@@ -146,8 +148,6 @@ public class Controller {
         send.setText("Guess");
     }
 
-
-
     public void setDrawerMode() {
         guesser = false;
         label1.setText("What did you draw?");
@@ -176,23 +176,6 @@ public class Controller {
         beginGameButton.setText("Connect");
         // display the IP address for the local computer
         IPAddressText.setText("10.85.216.52");
-    }
-
-    public void arrayList(){
-
-        new ArrayList<String>();
-
-        nameOfClients = new SyncData();
-        numberOfClients = new SyncData();
-
-        GUIupdater transmit = new GUIupdater(nameOfClients, numberOfClients);
-        Thread thread = new Thread(transmit);
-        thread.start();
-        GUIupdater sendTrasmit = new GUIupdater(nameOfClients, numberOfClients);
-        Thread thread1 = new Thread(sendTrasmit);
-        thread1.start();
-
-
     }
 
     public void startButtonPressed() {
@@ -247,6 +230,15 @@ public class Controller {
                 statusText.setText("Client start: networking failed. Exiting....");
             }
             // We connected!
+
+            if (yourNameText.getText() == null) {
+                System.out.println("Input Name");
+            } else {
+                Message sendMessage2 = new Message(yourNameText.getText(), null, null, 1);
+                while (!outQueue.put(sendMessage2)) {
+                    Thread.currentThread().yield();
+                }
+            }
         }
     }
 

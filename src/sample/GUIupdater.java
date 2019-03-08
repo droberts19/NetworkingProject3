@@ -10,14 +10,16 @@ public class GUIupdater implements Runnable {
     private SyncData syncData;
     private ImageView display;
     private Label whatIsTheDrawing;
+    private Label player;
+    private ArrayList<String> list;
 
-    GUIupdater(SyncData sd, ImageView iv, Label lb) {
+    GUIupdater(SyncData sd, ImageView iv, Label lb, Label pl, ArrayList<String> al) {
         syncData = sd;
         display = iv;
         whatIsTheDrawing = lb;
+        player = pl;
+        list = al;
     }
-
-
 
     public void run() {
         while (!Thread.interrupted()) {
@@ -29,15 +31,21 @@ public class GUIupdater implements Runnable {
 
             Message finalMessage = next;
             Platform.runLater(() -> {
-                display.setImage(null);
-                display.setImage(finalMessage.data());
-                whatIsTheDrawing.setText(finalMessage.text());
+                if (finalMessage.type() == 1) { //identification
+                    player.setText(finalMessage.sender());
+                    list.add(finalMessage.sender());
+                }
+                if (finalMessage.type() == 2) { //drawing
+                    display.setImage(null);
+                    display.setImage(finalMessage.data());
+                    whatIsTheDrawing.setText(finalMessage.text());
+                }
+                if (finalMessage.type() == 3) { //guess
 
+                }
             });
-
-
-
             }
+
     }
 
 }
