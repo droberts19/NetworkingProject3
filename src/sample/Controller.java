@@ -54,6 +54,7 @@ public class Controller {
     private boolean serverMode;
     static boolean connected;
     private ArrayList<String> nameOfClients;
+    private boolean correct = false;
 
     public void initialize() {
 
@@ -63,10 +64,10 @@ public class Controller {
         outQueue = new SyncData();
         connected = false;
 
-        GUIupdater transmit = new GUIupdater(outQueue, display, label3, player, nameOfClients);
+        GUIupdater transmit = new GUIupdater(outQueue, display, label3, player, nameOfClients, turn);
         Thread thread = new Thread(transmit);
         thread.start();
-        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3, player, nameOfClients);
+        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3, player, nameOfClients, turn);
         Thread thread1 = new Thread(sendTrasmit);
         thread1.start();
 
@@ -125,6 +126,13 @@ public class Controller {
 
     public void send() {
         if (guesser) {
+            if (guessText.getText().equals(label3.getText())) {
+                label4.setText("YEA");
+                correct = true;
+            } else {
+                label4.setText("NOO");
+                correct = false;
+            }
             Message sendMessage3 = new Message(yourNameText.getText(), null, guessText.getText(), 3);
             while (!outQueue.put(sendMessage3)) {
                 Thread.currentThread().yield();

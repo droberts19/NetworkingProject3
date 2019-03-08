@@ -12,13 +12,15 @@ public class GUIupdater implements Runnable {
     private Label whatIsTheDrawing;
     private Label player;
     private ArrayList<String> list;
+    private Label turn;
 
-    GUIupdater(SyncData sd, ImageView iv, Label lb, Label pl, ArrayList<String> al) {
+    GUIupdater(SyncData sd, ImageView iv, Label lb, Label pl, ArrayList<String> al, Label tr) {
         syncData = sd;
         display = iv;
         whatIsTheDrawing = lb;
         player = pl;
         list = al;
+        turn = tr;
     }
 
     public void run() {
@@ -41,7 +43,7 @@ public class GUIupdater implements Runnable {
                     whatIsTheDrawing.setText(finalMessage.text());
                 }
                 if (finalMessage.type() == 3) { //guess
-
+                    turn.setText("");
                 }
             });
             }
