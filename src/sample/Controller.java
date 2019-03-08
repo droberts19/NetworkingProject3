@@ -125,18 +125,15 @@ public class Controller {
 
     public void send() {
         if (guesser) {
-            if (guessText.getText().equals(label3.getText())) {
-                label4.setText("YAY");
-            } else {
-                label4.setText("NOO");
+            Message sendMessage3 = new Message(yourNameText.getText(), null, guessText.getText(), 3);
+            while (!outQueue.put(sendMessage3)) {
+                Thread.currentThread().yield();
             }
         } else {
             Image sendPic = getImage(lineGroup);
             Message sendMessage = new Message(yourNameText.getText(), sendPic, guessText.getText(), 2);
-            if (sendPic != null) {
-                while (!outQueue.put(sendMessage)) {
-                    Thread.currentThread().yield();
-                }
+            while (!outQueue.put(sendMessage)) {
+                Thread.currentThread().yield();
             }
         }
     }
