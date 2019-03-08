@@ -190,6 +190,11 @@ public class Controller {
             return;
         }
 
+        if (yourNameText.getText().isEmpty()) {
+            statusText.setText("Type a name BEFORE connecting");
+            return;
+        }
+
         // We're gonna start network connection!
         connected = true;
         beginGameButton.setDisable(true);
@@ -230,13 +235,9 @@ public class Controller {
             }
             // We connected!
 
-            if (yourNameText.getText() == null) {
-                System.out.println("Input Name");
-            } else {
-                Message sendMessage2 = new Message(yourNameText.getText(), null, null, 1);
-                while (!outQueue.put(sendMessage2)) {
-                    Thread.currentThread().yield();
-                }
+            Message sendMessage2 = new Message(yourNameText.getText(), null, null, 1);
+            while (!outQueue.put(sendMessage2)) {
+                Thread.currentThread().yield();
             }
         }
     }

@@ -32,7 +32,7 @@ public class GUIupdater implements Runnable {
             Message finalMessage = next;
             Platform.runLater(() -> {
                 if (finalMessage.type() == 1) { //identification
-                    player.setText(finalMessage.sender());
+                    player.setText("Player: " + finalMessage.sender());
                     list.add(finalMessage.sender());
                 }
                 if (finalMessage.type() == 2) { //drawing
