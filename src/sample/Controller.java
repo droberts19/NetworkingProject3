@@ -56,18 +56,7 @@ public class Controller {
 
     public void initialize() {
 
-        nameOfClients = new ArrayList<String>();
 
-        inQueue = new SyncData();
-        outQueue = new SyncData();
-        connected = false;
-
-        GUIupdater transmit = new GUIupdater(outQueue, display, label3, player, nameOfClients);
-        Thread thread = new Thread(transmit);
-        thread.start();
-        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3, player, nameOfClients);
-        Thread thread1 = new Thread(sendTrasmit);
-        thread1.start();
 
         portText.setText("5000");
 
