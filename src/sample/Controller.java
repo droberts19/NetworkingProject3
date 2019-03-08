@@ -46,6 +46,7 @@ public class Controller {
     public Button guess;
     public Label turn;
     public Label player;
+    public Button setName;
     private boolean guesser;
     private Stage stage;
     private SyncData inQueue;
@@ -140,6 +141,13 @@ public class Controller {
         }
     }
 
+    public void setName() {
+        Message sendMessage2 = new Message(yourNameText.getText(), null, null, 1);
+        while (!outQueue.put(sendMessage2)) {
+            Thread.currentThread().yield();
+        }
+    }
+
     public void setGuesserMode() {
         guesser = true;
         label1.setText("What is your guess?");
@@ -167,14 +175,14 @@ public class Controller {
             ex.printStackTrace();
             statusText.setText("Server start: getLocalHost failed. Exiting....");
         }
-
+        player.setText("");
     }
 
     void setClientMode() {
         serverMode = false;
         beginGameButton.setText("Connect");
         // display the IP address for the local computer
-        IPAddressText.setText("10.85.216.52");
+        IPAddressText.setText("10.85.216.236");
     }
 
     public void startButtonPressed() {
@@ -234,11 +242,6 @@ public class Controller {
                 statusText.setText("Client start: networking failed. Exiting....");
             }
             // We connected!
-
-            Message sendMessage2 = new Message(yourNameText.getText(), null, null, 1);
-            while (!outQueue.put(sendMessage2)) {
-                Thread.currentThread().yield();
-            }
         }
     }
 

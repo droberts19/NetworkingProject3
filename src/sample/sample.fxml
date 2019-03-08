@@ -58,5 +58,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="setName" layoutX="59.0" layoutY="327.0" mnemonicParsing="false" onAction="#setName" text="Name Set" />
    </children>
 </Pane>
