@@ -53,7 +53,7 @@ public class Message implements Serializable {
         data = SwingFXUtils.toFXImage(ImageIO.read(inStream), null);
     }
 
-    private void writeObject(ObjectOutputStream outStream) throws IOException {
+    private void writeObject(ObjectOutputStream outStream) throws IOException, ClassNotFoundException {
         // this writes sender String with default code
         outStream.defaultWriteObject();
         // this writes data Image using this custom code

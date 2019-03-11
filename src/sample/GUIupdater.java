@@ -43,24 +43,34 @@ public class GUIupdater implements Runnable {
             Platform.runLater(() -> {
                 if (finalMessage.type() == 1) { //identification
                     player.getItems().add(finalMessage.sender());
+                }else{
+                    System.out.println("Identification did not work");
                 }
                 if (finalMessage.type() == 2) { //drawing
                     display.setImage(null);
                     display.setImage(finalMessage.data());
                     whatIsTheDrawing.setText(finalMessage.text());
+                }else{
+                    System.out.println("drawing did not work");
                 }
                 if (finalMessage.type() == 3) { //guess
-                    turn.setText("");
+                    turn.setText("Player got it right");
+                }else{
+                    System.out.println("guess did not work");
                 }
                 if (finalMessage.type() == 4) { //drawer
                     label1.setText("What did you draw?");
                     label2.setText("Are you done drawing?");
                     send.setText("Send");
+                }else{
+                    System.out.println("drawer did not work");
                 }
                 if (finalMessage.type() == 5) { //guesser
                     label1.setText("What is your guess?");
                     label2.setText("Are you ready to guess?");
                     send.setText("Guess");
+                }else{
+                    System.out.println("guesser did not work");
                 }
             });
             }

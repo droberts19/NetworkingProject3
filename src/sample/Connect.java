@@ -47,6 +47,7 @@ public class Connect implements Runnable{
                 Socket socketServerSide = connectionSocket.accept();
                 Platform.runLater(() -> statusText.setText("Client has connected!"));
 
+
                 // EACH SEPARATE client that is accepted results in 1 extra Socket named socketServerSide
                 // socketServerSide provides 2 separate streams for 2-way communication
                 //   the OutputStream is for communication TO client FROM server
