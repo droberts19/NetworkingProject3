@@ -56,6 +56,7 @@ public class Controller {
     static boolean connected;
     private ArrayList<String> nameOfClients;
     private boolean correct = false;
+    private boolean didNameSet = false;
 
     public void initialize() {
 
@@ -153,24 +154,33 @@ public class Controller {
         while (!outQueue.put(sendMessage2)) {
             Thread.currentThread().yield();
         }
+        if (player.getItems().size() == player.getItems().size() + 1) {
+            setName.setDisable(true);
+        }
     }
 
     public void setGuesserMode() {
         guesser = true;
         Image sendPic2 = getImage(lineGroup);
-        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 5);
+        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 4);
         while (!outQueue.put(draw)) {
             Thread.currentThread().yield();
         }
+        label1.setText("What is your guess?");
+        label2.setText("Are you ready to guess?");
+        send.setText("Guess");
     }
 
     public void setDrawerMode() {
         guesser = false;
         Image sendPic3 = getImage(lineGroup);
-        Message guess = new Message(yourNameText.getText(), sendPic3, guessText.getText(), 4);
+        Message guess = new Message(yourNameText.getText(), sendPic3, guessText.getText(), 5);
         while (!outQueue.put(guess)) {
             Thread.currentThread().yield();
         }
+        label1.setText("What did you draw?");
+        label2.setText("Are you done drawing?");
+        send.setText("Send");
     }
 
     public void setStage(Stage theStage) {
