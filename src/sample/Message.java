@@ -21,11 +21,11 @@ public class Message implements Serializable {
     private  int type;
 
 
-    Message(String who, Image what, String when, int why) {
-        sender = who;
-        data = what;
-        text = when;
-        type = why;
+    Message(String name, Image image, String guess, int type) {
+        sender = name;
+        data = image;
+        text = guess;
+        type = type;
     }
 
     String sender() {

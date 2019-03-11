@@ -53,11 +53,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="player" layoutX="30.0" layoutY="32.0" text="Player: ">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <Button fx:id="setName" layoutX="59.0" layoutY="327.0" mnemonicParsing="false" onAction="#setName" text="Name Set" />
+      <ListView fx:id="player" layoutX="15.0" layoutY="13.0" prefHeight="60.0" prefWidth="167.0" />
    </children>
 </Pane>

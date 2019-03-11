@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,7 +46,7 @@ public class Controller {
     public Button draw;
     public Button guess;
     public Label turn;
-    public Label player;
+    public ListView<String> player;
     public Button setName;
     private boolean guesser;
     private Stage stage;
@@ -64,10 +65,10 @@ public class Controller {
         outQueue = new SyncData();
         connected = false;
 
-        GUIupdater transmit = new GUIupdater(outQueue, display, label3, player, nameOfClients, turn);
+        GUIupdater transmit = new GUIupdater(outQueue, display, label3, player, nameOfClients, turn, label1, label2, send);
         Thread thread = new Thread(transmit);
         thread.start();
-        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3, player, nameOfClients, turn);
+        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3, player, nameOfClients, turn, label1, label2, send);
         Thread thread1 = new Thread(sendTrasmit);
         thread1.start();
 
@@ -147,7 +148,8 @@ public class Controller {
     }
 
     public void setName() {
-        Message sendMessage2 = new Message(yourNameText.getText(), null, null, 1);
+        Image sendPic1 = getImage(lineGroup);
+        Message sendMessage2 = new Message(yourNameText.getText(), sendPic1, guessText.getText(), 1);
         while (!outQueue.put(sendMessage2)) {
             Thread.currentThread().yield();
         }
@@ -155,16 +157,20 @@ public class Controller {
 
     public void setGuesserMode() {
         guesser = true;
-        label1.setText("What is your guess?");
-        label2.setText("Are you ready to guess?");
-        send.setText("Guess");
+        Image sendPic2 = getImage(lineGroup);
+        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 4);
+        while (!outQueue.put(draw)) {
+            Thread.currentThread().yield();
+        }
     }
 
     public void setDrawerMode() {
         guesser = false;
-        label1.setText("What did you draw?");
-        label2.setText("Are you done drawing?");
-        send.setText("Send");
+        Image sendPic3 = getImage(lineGroup);
+        Message guess = new Message(yourNameText.getText(), sendPic3, guessText.getText(), 5);
+        while (!outQueue.put(guess)) {
+            Thread.currentThread().yield();
+        }
     }
 
     public void setStage(Stage theStage) {
@@ -180,7 +186,6 @@ public class Controller {
             ex.printStackTrace();
             statusText.setText("Server start: getLocalHost failed. Exiting....");
         }
-        player.setText("");
     }
 
     void setClientMode() {
