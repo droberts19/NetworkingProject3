@@ -158,7 +158,7 @@ public class Controller {
     public void setGuesserMode() {
         guesser = true;
         Image sendPic2 = getImage(lineGroup);
-        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 4);
+        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 5);
         while (!outQueue.put(draw)) {
             Thread.currentThread().yield();
         }
@@ -167,7 +167,7 @@ public class Controller {
     public void setDrawerMode() {
         guesser = false;
         Image sendPic3 = getImage(lineGroup);
-        Message guess = new Message(yourNameText.getText(), sendPic3, guessText.getText(), 5);
+        Message guess = new Message(yourNameText.getText(), sendPic3, guessText.getText(), 4);
         while (!outQueue.put(guess)) {
             Thread.currentThread().yield();
         }

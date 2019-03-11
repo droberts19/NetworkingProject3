@@ -21,11 +21,11 @@ public class Message implements Serializable {
     private  int type;
 
 
-    Message(String name, Image image, String guess, int type) {
+    Message(String name, Image image, String guess, int tp) {
         sender = name;
         data = image;
         text = guess;
-        type = type;
+        type = tp;
     }
 
     String sender() {
@@ -38,7 +38,7 @@ public class Message implements Serializable {
 
     String text() {return text;}
 
-    Integer type() {
+    int type() {
         return type;
     }
 
