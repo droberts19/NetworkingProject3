@@ -117,11 +117,6 @@ public class Controller {
         label3.setText("");
         label4.setText("");
         guessText.setText("");
-        if (guesser) {
-            setDrawerMode();
-        } else {
-            setGuesserMode();
-        }
     }
 
     public void send() {
@@ -146,19 +141,8 @@ public class Controller {
         }
     }
 
-    public void setName() {
-        player.getItems().add(yourNameText.getText());
-        Image sendPic1 = getImage(lineGroup);
-        Message sendMessage2 = new Message(yourNameText.getText(), sendPic1, guessText.getText(), 1);
-        while (!outQueue.put(sendMessage2)) {
-            Thread.currentThread().yield();
-        }
-        if (player.getItems().size() == player.getItems().size() + 1) {
-            setName.setDisable(true);
-        }
-    }
-
     public void setGuesserMode() {
+        clear();
         guesser = true;
         Image sendPic2 = getImage(lineGroup);
         Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 4);
@@ -171,6 +155,7 @@ public class Controller {
     }
 
     public void setDrawerMode() {
+        clear();
         guesser = false;
         Image sendPic3 = getImage(lineGroup);
         Message guess = new Message(yourNameText.getText(), sendPic3, guessText.getText(), 5);
@@ -220,6 +205,13 @@ public class Controller {
         if (yourNameText.getText().isEmpty()) {
             statusText.setText("Type a name BEFORE connecting");
             return;
+        }
+
+        player.getItems().add(yourNameText.getText());
+        Image sendPic1 = getImage(lineGroup);
+        Message sendMessage2 = new Message(yourNameText.getText(), sendPic1, guessText.getText(), 1);
+        while (!outQueue.put(sendMessage2)) {
+            Thread.currentThread().yield();
         }
 
         // We're gonna start network connection!
