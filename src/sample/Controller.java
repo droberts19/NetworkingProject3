@@ -141,6 +141,15 @@ public class Controller {
         }
     }
 
+    public void setName() {
+        player.getItems().add(yourNameText.getText());
+        Image sendPic1 = getImage(lineGroup);
+        Message sendMessage2 = new Message(yourNameText.getText(), sendPic1, guessText.getText(), 1);
+        while (!outQueue.put(sendMessage2)) {
+            Thread.currentThread().yield();
+        }
+    }
+
     public void setGuesserMode() {
         clear();
         guesser = true;
@@ -205,13 +214,6 @@ public class Controller {
         if (yourNameText.getText().isEmpty()) {
             statusText.setText("Type a name BEFORE connecting");
             return;
-        }
-
-        player.getItems().add(yourNameText.getText());
-        Image sendPic1 = getImage(lineGroup);
-        Message sendMessage2 = new Message(yourNameText.getText(), sendPic1, guessText.getText(), 1);
-        while (!outQueue.put(sendMessage2)) {
-            Thread.currentThread().yield();
         }
 
         // We're gonna start network connection!
