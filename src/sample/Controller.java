@@ -66,11 +66,9 @@ public class Controller {
         outQueue = new SyncData();
         connected = false;
 
-        GUIupdater transmit = new GUIupdater(outQueue, display, label3, player, nameOfClients, turn, label1, label2, send);
-        Thread thread = new Thread(transmit);
-        thread.start();
         GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3, player, nameOfClients, turn, label1, label2, send);
         Thread thread1 = new Thread(sendTrasmit);
+        thread1.setName("GUI Updater Thread");
         thread1.start();
 
         portText.setText("5000");
@@ -149,6 +147,7 @@ public class Controller {
     }
 
     public void setName() {
+        player.getItems().add(yourNameText.getText());
         Image sendPic1 = getImage(lineGroup);
         Message sendMessage2 = new Message(yourNameText.getText(), sendPic1, guessText.getText(), 1);
         while (!outQueue.put(sendMessage2)) {

@@ -56,7 +56,7 @@ public class CommunicationIn implements Runnable {
                 Platform.runLater(() -> statusText.setText("RECEIVED: " + finalMessage));
 
                 // ignore any messages sent by yourself: only put messages from others into your inQueue
-                if (!message.sender().equals(yourNameText.getText())) {
+                if (serverMode || !message.sender().equals(yourNameText.getText())) {
                     // Now put message on the InputQueue so that the GUI will see it
                     boolean putSucceeded = inQueue.put(message);
                     while (!putSucceeded) {

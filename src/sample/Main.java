@@ -29,7 +29,7 @@ public class Main extends Application {
 
         controller = loader.getController();
         controller.setServerMode();
-        controller.setGuesserMode();
+        //controller.setGuesserMode();
         controller.setStage(primaryStage);
     }
 

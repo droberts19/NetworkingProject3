@@ -43,7 +43,7 @@ public class Message implements Serializable {
     }
 
     public String toString() {
-        return "\"" + data + "\" from: " + sender + "\" with guess: " + text;
+        return "msgType: " + type + " \"" + data + "\" from: " + sender + "\" with guess: " + text;
     }
 
     private void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {

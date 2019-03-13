@@ -45,6 +45,7 @@ public class Connect implements Runnable{
             while (Controller.connected && !Thread.interrupted()) {
                 // Wait until a client tries to connect
                 Socket socketServerSide = connectionSocket.accept();
+                System.out.println("NEW CLIENT");
                 Platform.runLater(() -> statusText.setText("Client has connected!"));
 
 
