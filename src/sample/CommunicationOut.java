@@ -49,7 +49,7 @@ public class CommunicationOut implements Runnable {
                 System.out.println("CommunicationOut GOT: " + message);
 
                 // write message to 1 or many sockets
-                if (serverMode && Main.multicastMode) {
+                if (serverMode && MainServer.multicastMode) {
                     int clientCount = 0;
                     Iterator<ObjectOutputStream> allClients = outStreams.iterator();
                     while (allClients.hasNext()) {

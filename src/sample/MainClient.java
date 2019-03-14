@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainGuesser extends Application {
+public class MainClient extends Application {
 
     private Controller controller;
 
@@ -27,7 +27,6 @@ public class MainGuesser extends Application {
         //controller.setDrawerMode();
         controller.setStage(primaryStage);
     }
-
 
     public static void main(String[] args) {
         launch(args);

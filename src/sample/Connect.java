@@ -23,7 +23,7 @@ public class Connect implements Runnable{
         outQueue = outQ;
         statusText = status;
         yourNameText = name;
-        if (Main.multicastMode) {
+        if (MainServer.multicastMode) {
             clientOutputStreams = new ArrayList<ObjectOutputStream>();
         }
     }
@@ -45,9 +45,7 @@ public class Connect implements Runnable{
             while (Controller.connected && !Thread.interrupted()) {
                 // Wait until a client tries to connect
                 Socket socketServerSide = connectionSocket.accept();
-                System.out.println("NEW CLIENT");
                 Platform.runLater(() -> statusText.setText("Client has connected!"));
-
 
                 // EACH SEPARATE client that is accepted results in 1 extra Socket named socketServerSide
                 // socketServerSide provides 2 separate streams for 2-way communication
@@ -61,7 +59,7 @@ public class Connect implements Runnable{
                 //   Thread 1: handles communication TO that client FROM server
                 //   if multi-cast is enabled, communicationOut sends data TO ALL clients FROM server
                 CommunicationOut communicationOut;
-                if (Main.multicastMode) {
+                if (MainServer.multicastMode) {
                     // collect all output streams to clients, so that server can multicast to all clients
                     clientOutputStreams.add(dataWriter);
                     communicationOut = new CommunicationOut(socketServerSide, clientOutputStreams, outQueue, statusText);

@@ -66,8 +66,8 @@ public class Controller {
         outQueue = new SyncData();
         connected = false;
 
-        GUIupdater sendTrasmit = new GUIupdater(inQueue, display, label3, player, nameOfClients, turn, label1, label2, send);
-        Thread thread1 = new Thread(sendTrasmit);
+        GUIupdater sendTransmit = new GUIupdater(inQueue, display, label3, player, nameOfClients, turn, label1, label2, send);
+        Thread thread1 = new Thread(sendTransmit);
         thread1.setName("GUI Updater Thread");
         thread1.start();
 
@@ -142,11 +142,15 @@ public class Controller {
     }
 
     public void setName() {
-        player.getItems().add(yourNameText.getText());
-        Image sendPic1 = getImage(lineGroup);
-        Message sendMessage2 = new Message(yourNameText.getText(), sendPic1, guessText.getText(), 1);
-        while (!outQueue.put(sendMessage2)) {
-            Thread.currentThread().yield();
+        if (connected) {
+            player.getItems().add(yourNameText.getText());
+            Image sendPic1 = getImage(lineGroup);
+            Message sendMessage2 = new Message(yourNameText.getText(), sendPic1, guessText.getText(), 1);
+            while (!outQueue.put(sendMessage2)) {
+                Thread.currentThread().yield();
+            }
+        } else {
+            statusText.setText("Connect before setting name");
         }
     }
 
@@ -231,6 +235,7 @@ public class Controller {
 
             // We're a client: connect to a server
             try {
+                System.out.println("Socket is trying to connect");
                 Socket socketClientSide = new Socket(IPAddressText.getText(), Integer.parseInt(portText.getText()));
                 statusText.setText("Connected to server at IP address " + IPAddressText.getText() + " on port " + portText.getText());
 
