@@ -57,12 +57,17 @@ public class GUIupdater implements Runnable {
                 }
                 if (finalMessage.type() == 4) { //drawer
                     System.out.println("drawer DID work");
+                    display.setImage(null);
+                    whatIsTheDrawing.setText("");
                     label1.setText("What did you draw?");
                     label2.setText("Are you done drawing?");
                     send.setText("Send");
+
                 }
                 if (finalMessage.type() == 5) { //guesser
                     System.out.println("guesser DID work");
+                    display.setImage(null);
+                    whatIsTheDrawing.setText("");
                     label1.setText("What is your guess?");
                     label2.setText("Are you ready to guess?");
                     send.setText("Guess");
