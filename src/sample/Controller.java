@@ -121,14 +121,8 @@ public class Controller {
 
     public void send() {
         if (guesser) {
-            if (guessText.getText().equals(label3.getText())) {
-                label4.setText("YEA");
-                correct = true;
-            } else {
-                label4.setText("NOO");
-                correct = false;
-            }
-            Message sendMessage3 = new Message(yourNameText.getText(), null, guessText.getText(), 3);
+            Image sendPic = getImage(lineGroup);
+            Message sendMessage3 = new Message(yourNameText.getText(), sendPic, guessText.getText(), 3);
             while (!outQueue.put(sendMessage3)) {
                 Thread.currentThread().yield();
             }
@@ -237,6 +231,7 @@ public class Controller {
             try {
                 System.out.println("Socket is trying to connect");
                 Socket socketClientSide = new Socket(IPAddressText.getText(), Integer.parseInt(portText.getText()));
+                System.out.println("Socket tried and did its job yay");
                 statusText.setText("Connected to server at IP address " + IPAddressText.getText() + " on port " + portText.getText());
 
                 // The socketClientSide provides 2 separate streams for 2-way communication
