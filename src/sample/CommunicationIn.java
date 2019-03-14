@@ -67,7 +67,7 @@ public class CommunicationIn implements Runnable {
                     Platform.runLater(() -> statusText.setText("PUT into InputQueue: " + finalMessage));
 
                     // IF SERVER and MULTICAST: also put that incoming message on the OutputQueue so ALL clients see it
-                    if (serverMode && Main.multicastMode) {
+                    if (serverMode && MainServer.multicastMode) {
                         putSucceeded = outQueue.put(message);
                         while (!putSucceeded) {
                             Thread.currentThread().yield();

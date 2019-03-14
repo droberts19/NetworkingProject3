@@ -44,6 +44,7 @@ public class GUIupdater implements Runnable {
                 if (finalMessage.type() == 1) { //identification
                     System.out.println("Identification DID work");
                     player.getItems().add(finalMessage.sender());
+                    list.add(finalMessage.sender());
                 }
                 if (finalMessage.type() == 2) { //drawing
                     System.out.println("drawing DID work");
