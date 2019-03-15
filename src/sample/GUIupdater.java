@@ -19,6 +19,7 @@ public class GUIupdater implements Runnable {
     private Label label2;
     private Label label3;
     private Button send;
+    private Controller controller;
 
     GUIupdater(SyncData sd, ImageView iv, Label lb, ListView<String> pl, ArrayList<String> al, Label tr, Label l1, Label l2, Button sn) {
         syncData = sd;
@@ -61,20 +62,19 @@ public class GUIupdater implements Runnable {
                 }
                 if (finalMessage.type() == 4) { //drawer
                     System.out.println("drawer DID work");
-                    display.setImage(null);
-                    whatIsTheDrawing.setText("");
+                    controller.clear();
                     label1.setText("What did you draw?");
                     label2.setText("Are you done drawing?");
                     send.setText("Send");
-
+                    controller.setDrawerMode();
                 }
                 if (finalMessage.type() == 5) { //guesser
                     System.out.println("guesser DID work");
-                    display.setImage(null);
-                    whatIsTheDrawing.setText("");
+                    controller.clear();
                     label1.setText("What is your guess?");
                     label2.setText("Are you ready to guess?");
                     send.setText("Guess");
+                    controller.setDrawerMode();
                 }
             });
             }

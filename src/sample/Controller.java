@@ -117,6 +117,7 @@ public class Controller {
         label3.setText("");
         label4.setText("");
         guessText.setText("");
+        turn.setText("");
     }
 
     public void send() {
