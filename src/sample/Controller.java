@@ -66,7 +66,7 @@ public class Controller {
         outQueue = new SyncData();
         connected = false;
 
-        GUIupdater sendTransmit = new GUIupdater(inQueue, display, label3, player, nameOfClients, turn, label1, label2, send);
+        GUIupdater sendTransmit = new GUIupdater(inQueue, display, label3, player, nameOfClients, turn, label1, label2, send, guessText, lineGroup, canvas);
         Thread thread1 = new Thread(sendTransmit);
         thread1.setName("GUI Updater Thread");
         thread1.start();
