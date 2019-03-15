@@ -17,6 +17,7 @@ public class GUIupdater implements Runnable {
     private Label turn;
     private Label label1;
     private Label label2;
+    private Label label3;
     private Button send;
 
     GUIupdater(SyncData sd, ImageView iv, Label lb, ListView<String> pl, ArrayList<String> al, Label tr, Label l1, Label l2, Button sn) {
@@ -54,7 +55,9 @@ public class GUIupdater implements Runnable {
                 }
                 if (finalMessage.type() == 3) { //guess
                     System.out.println("guess DID work");
-                    turn.setText("Player got it right");
+                    if (finalMessage.text().equals(whatIsTheDrawing.getText())) {
+                        turn.setText(finalMessage.sender() + " got it right");
+                    }
                 }
                 if (finalMessage.type() == 4) { //drawer
                     System.out.println("drawer DID work");
