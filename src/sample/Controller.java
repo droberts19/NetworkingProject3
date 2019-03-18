@@ -122,10 +122,13 @@ public class Controller {
 
     public void send() {
         if (guesser) {
-            Image sendPic = getImage(lineGroup);
-            Message sendMessage3 = new Message(yourNameText.getText(), sendPic, guessText.getText(), 3);
-            while (!outQueue.put(sendMessage3)) {
-                Thread.currentThread().yield();
+            if (guessText.getText().equals(label3.getText())) {
+                label4.setText("YAY");
+                Image sendPic = getImage(lineGroup);
+                Message sendMessage3 = new Message(yourNameText.getText(), sendPic, guessText.getText(), 3);
+                while (!outQueue.put(sendMessage3)) {
+                    Thread.currentThread().yield();
+                }
             }
         } else {
             Image sendPic = getImage(lineGroup);
@@ -170,6 +173,7 @@ public class Controller {
         while (!outQueue.put(guess)) {
             Thread.currentThread().yield();
         }
+        turn.setText(yourNameText.getText() + " is drawing");
         label1.setText("What did you draw?");
         label2.setText("Are you done drawing?");
         send.setText("Send");

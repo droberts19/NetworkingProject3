@@ -63,9 +63,7 @@ public class GUIupdater implements Runnable {
                 }
                 if (finalMessage.type() == 3) { //guess
                     System.out.println("guess DID work");
-                    if (finalMessage.text().equals(whatIsTheDrawing.getText())) {
-                        turn.setText(finalMessage.sender() + " got it right");
-                    }
+                    turn.setText(finalMessage.sender() + " got it right");
                 }
                 if (finalMessage.type() == 4) { //drawer
                     System.out.println("drawer DID work");
@@ -74,12 +72,12 @@ public class GUIupdater implements Runnable {
                     lineGroup.getChildren().removeAll(lineGroup.getChildren());
                     lineGroup.getChildren().add(display);
                     lineGroup.getChildren().add(canvas);
-                    label3.setText("");
                     turn.setText("");
                     guessText.setText("");
                     label1.setText("What did you draw?");
                     label2.setText("Are you done drawing?");
                     send.setText("Send");
+                    turn.setText("");
                 }
                 if (finalMessage.type() == 5) { //guesser
                     System.out.println("guesser DID work");
@@ -88,12 +86,13 @@ public class GUIupdater implements Runnable {
                     lineGroup.getChildren().removeAll(lineGroup.getChildren());
                     lineGroup.getChildren().add(display);
                     lineGroup.getChildren().add(canvas);
-                    label3.setText("");
                     turn.setText("");
                     guessText.setText("");
                     label1.setText("What is your guess?");
                     label2.setText("Are you ready to guess?");
                     send.setText("Guess");
+                    turn.setText("");
+                    turn.setText(finalMessage.sender() + " is drawing");
                 }
             });
             }
