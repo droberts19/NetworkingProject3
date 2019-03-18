@@ -20,7 +20,6 @@ public class Message implements Serializable {
 
     private  int type;
 
-
     Message(String name, Image image, String guess, int tp) {
         sender = name;
         data = image;
