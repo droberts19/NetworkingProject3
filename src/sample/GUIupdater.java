@@ -24,8 +24,9 @@ public class GUIupdater implements Runnable {
     private Group lineGroup;
     private Rectangle canvas;
     private TextField guessText;
+    private Controller myController;
 
-    GUIupdater(SyncData sd, ImageView iv, Label lb, ListView<String> pl, ArrayList<String> al, Label tr, Label l1, Label l2, Button sn, TextField tx, Group gp, Rectangle rc) {
+    GUIupdater(SyncData sd, Controller controller, ImageView iv, Label lb, ListView<String> pl, ArrayList<String> al, Label tr, Label l1, Label l2, Button sn, TextField tx, Group gp, Rectangle rc) {
         syncData = sd;
         display = iv;
         whatIsTheDrawing = lb;
@@ -38,6 +39,7 @@ public class GUIupdater implements Runnable {
         guessText = tx;
         lineGroup = gp;
         canvas = rc;
+        myController = controller;
     }
 
 
@@ -79,6 +81,7 @@ public class GUIupdater implements Runnable {
                     label2.setText("Are you done drawing?");
                     send.setText("Send");
                     turn.setText("");
+                    myController.setDrawerMode();
                 }
                 if (finalMessage.type() == 5) { //guesser
                     System.out.println("guesser DID work");
@@ -94,6 +97,7 @@ public class GUIupdater implements Runnable {
                     send.setText("Guess");
                     turn.setText("");
                     turn.setText(finalMessage.sender() + " is drawing");
+                    myController.setGuesserMode();
                 }
             });
             }
