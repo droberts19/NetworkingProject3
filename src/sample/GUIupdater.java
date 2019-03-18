@@ -40,6 +40,7 @@ public class GUIupdater implements Runnable {
         canvas = rc;
     }
 
+
     public void run() {
         while (!Thread.interrupted()) {
             Message next = (Message) syncData.get();

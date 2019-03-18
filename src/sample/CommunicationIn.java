@@ -52,7 +52,6 @@ public class CommunicationIn implements Runnable {
                 Message finalMessage = message;
                 System.out.println("CommunicationIn: RECEIVING " + message);
                 // Receiving incoming message!!!
-
                 Platform.runLater(() -> statusText.setText("RECEIVED: " + finalMessage));
 
                 // ignore any messages sent by yourself: only put messages from others into your inQueue

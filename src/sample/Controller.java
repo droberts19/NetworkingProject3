@@ -179,6 +179,8 @@ public class Controller {
         stage = theStage;
     }
 
+
+
     void setServerMode() {
         serverMode = true;
         beginGameButton.setText("Start");
@@ -190,12 +192,15 @@ public class Controller {
         }
     }
 
+
     void setClientMode() {
         serverMode = false;
         beginGameButton.setText("Connect");
         // display the IP address for the local computer
         IPAddressText.setText("10.85.216.236");
     }
+
+
 
     public void startButtonPressed() {
         // If we're already connected, start button should be disabled
@@ -245,7 +250,6 @@ public class Controller {
                 CommunicationOut communicationOut = new CommunicationOut(socketClientSide, new ObjectOutputStream(socketClientSide.getOutputStream()), outQueue, statusText);
                 Thread communicationOutThread = new Thread(communicationOut);
                 communicationOutThread.start();
-
                 //   Thread 2: handles communication FROM server TO client
                 CommunicationIn communicationIn = new CommunicationIn(socketClientSide, new ObjectInputStream(socketClientSide.getInputStream()), inQueue, null, statusText, yourNameText);
                 Thread communicationInThread = new Thread(communicationIn);

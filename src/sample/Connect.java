@@ -37,6 +37,8 @@ public class Connect implements Runnable{
             // Every time a new client connects, the server creates 2 extra threads:
             //   1 thread for communication FROM that new client TO server
             //   1 thread for communication TO that client FROM server
+            // Add more clients controller.add();
+
 
             // Start listening for client connections
             Platform.runLater(() -> statusText.setText("Listening on port " + connectionPort));
