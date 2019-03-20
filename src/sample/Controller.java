@@ -157,28 +157,35 @@ public class Controller {
     public void setGuesserMode() {
         clear();
         guesser = true;
-        Image sendPic2 = getImage(lineGroup);
-        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 4);
-        while (!outQueue.put(draw)) {
-            Thread.currentThread().yield();
-        }
         label1.setText("What is your guess?");
         label2.setText("Are you ready to guess?");
         send.setText("Guess");
     }
 
+    public void sendGuesserMsg() {
+        Image sendPic2 = getImage(lineGroup);
+        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 4);
+        while (!outQueue.put(draw)) {
+            Thread.currentThread().yield();
+        }
+    }
+
     public void setDrawerMode() {
         clear();
         guesser = false;
+        turn.setText(yourNameText.getText() + " is drawing");
+        label1.setText("What did you draw?");
+        label2.setText("Are you done drawing?");
+        send.setText("Send");
         Image sendPic3 = getImage(lineGroup);
         Message guess = new Message(yourNameText.getText(), sendPic3, guessText.getText(), 5);
         while (!outQueue.put(guess)) {
             Thread.currentThread().yield();
         }
-        turn.setText(yourNameText.getText() + " is drawing");
-        label1.setText("What did you draw?");
-        label2.setText("Are you done drawing?");
-        send.setText("Send");
+    }
+
+    public void sendDrawerMsg() {
+
     }
 
     public void setStage(Stage theStage) {
