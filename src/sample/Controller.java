@@ -117,17 +117,30 @@ public class Controller {
         label3.setText("");
         label4.setText("");
         guessText.setText("");
-        turn.setText("");
+    }
+
+    private void delay(int x) {
+            try {
+                Thread.sleep(x);
+            } catch (InterruptedException e) {
+            }
+            System.out.println("Did delay of " + x / 1000 + " secs");
+            return;
     }
 
     public void send() {
         if (guesser) {
             if (guessText.getText().equals(label3.getText())) {
                 label4.setText("YAY");
+                turn.setText("YOU got it right!");
                 Image sendPic = getImage(lineGroup);
                 Message sendMessage3 = new Message(yourNameText.getText(), sendPic, guessText.getText(), 3);
                 while (!outQueue.put(sendMessage3)) {
                     Thread.currentThread().yield();
+                }
+                if (label4.getText().equals("YAY") || turn.getText().equals("YOU got it right!")) {
+                    //delay(5000);
+                    setDrawerMode();
                 }
             } else {
                 label4.setText("NOO");
@@ -173,7 +186,7 @@ public class Controller {
     public void setDrawerMode() {
         clear();
         guesser = false;
-        turn.setText(yourNameText.getText() + " is drawing");
+        turn.setText("YOU are drawing");
         label1.setText("What did you draw?");
         label2.setText("Are you done drawing?");
         send.setText("Send");
