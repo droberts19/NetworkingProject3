@@ -16,43 +16,43 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button fx:id="btnClear" layoutX="330.0" layoutY="57.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
-      <Label fx:id="label1" layoutX="538.0" layoutY="99.0" text="What did you draw?" />
-      <TextField fx:id="guessText" layoutX="516.0" layoutY="129.0" text=" " />
-      <Label fx:id="label2" layoutX="529.0" layoutY="187.0" text="Are you done drawing?" />
-      <Button fx:id="send" layoutX="574.0" layoutY="216.0" mnemonicParsing="false" onAction="#send" text="Send" />
-      <Label layoutX="286.0" layoutY="14.0" text="PICTOGRAM">
+      <Button fx:id="btnClear" layoutX="598.0" layoutY="228.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
+      <Label fx:id="label1" layoutX="562.0" layoutY="167.0" text="What did you draw?" />
+      <TextField fx:id="guessText" layoutX="553.0" layoutY="190.0" prefHeight="27.0" prefWidth="141.0" text=" " />
+      <Label fx:id="label2" layoutX="553.0" layoutY="260.0" text="Are you done drawing?" />
+      <Button fx:id="send" layoutX="598.0" layoutY="285.0" mnemonicParsing="false" onAction="#send" text="Send" />
+      <Label layoutX="239.0" layoutY="14.0" text="PICTOGRAM">
          <font>
-            <Font size="24.0" />
+            <Font size="36.0" />
          </font>
       </Label>
-      <Label layoutX="62.0" layoutY="130.0" text="IP Address:" />
-      <TextField fx:id="IPAddressText" layoutX="15.0" layoutY="145.0" />
-      <Label layoutX="82.0" layoutY="172.0" text="Port:" />
-      <TextField fx:id="portText" layoutX="15.0" layoutY="189.0" />
-      <Button fx:id="beginGameButton" layoutX="73.0" layoutY="220.0" mnemonicParsing="false" onAction="#startButtonPressed" text="Start" />
-      <Label layoutX="76.0" layoutY="259.0" text="Status:" />
-      <TextField fx:id="statusText" layoutX="15.0" layoutY="278.0" />
-      <Label layoutX="56.0" layoutY="305.0" text="Player Name:" />
-      <TextField fx:id="yourNameText" layoutX="15.0" layoutY="323.0" />
-      <Group fx:id="lineGroup">
+      <Label layoutX="41.0" layoutY="181.0" text="IP Address:" />
+      <TextField fx:id="IPAddressText" layoutX="14.0" layoutY="198.0" prefHeight="27.0" prefWidth="122.0" />
+      <Label layoutX="60.0" layoutY="224.0" text="Port:" />
+      <TextField fx:id="portText" layoutX="15.0" layoutY="241.0" prefHeight="27.0" prefWidth="122.0" />
+      <Button fx:id="beginGameButton" layoutX="51.0" layoutY="277.0" mnemonicParsing="false" onAction="#startButtonPressed" text="Start" />
+      <Label layoutX="54.0" layoutY="306.0" text="Status:" />
+      <TextField fx:id="statusText" layoutX="14.0" layoutY="323.0" prefHeight="27.0" prefWidth="122.0" />
+      <Label layoutX="35.0" layoutY="350.0" text="Player Name:" />
+      <TextField fx:id="yourNameText" layoutX="15.0" layoutY="367.0" prefHeight="27.0" prefWidth="122.0" />
+      <Group fx:id="lineGroup" layoutX="-56.0" layoutY="-30.0">
          <children>
-            <ImageView fx:id="display" fitHeight="280.0" fitWidth="300.0" layoutX="205.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="280.0" layoutX="205.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+            <ImageView fx:id="display" fitHeight="316.0" fitWidth="394.0" layoutX="205.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="316.0" layoutX="205.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="394.0" />
          </children>
       </Group>
-      <Label fx:id="label3" layoutX="564.0" layoutY="267.0" prefHeight="17.0" prefWidth="70.0" textFill="TRANSPARENT" />
-      <Label fx:id="label4" layoutX="539.0" layoutY="299.0" prefHeight="60.0" prefWidth="122.0">
+      <Label fx:id="label3" layoutX="630.0" layoutY="401.0" prefHeight="17.0" prefWidth="70.0" textFill="TRANSPARENT" />
+      <Label fx:id="label4" layoutX="561.0" layoutY="329.0" prefHeight="60.0" prefWidth="122.0">
          <font>
             <Font size="48.0" />
          </font></Label>
-      <Button fx:id="draw" layoutX="567.0" layoutY="57.0" mnemonicParsing="false" onAction="#setDrawerMode" text="Drawer" />
+      <Button fx:id="draw" layoutX="591.0" layoutY="132.0" mnemonicParsing="false" onAction="#setDrawerMode" text="Drawer" />
       <Label fx:id="turn" layoutX="229.0" layoutY="386.0" prefHeight="27.0" prefWidth="258.0" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ListView fx:id="player" layoutX="15.0" layoutY="13.0" prefHeight="104.0" prefWidth="167.0" />
-      <Button fx:id="setName" layoutX="60.0" layoutY="359.0" mnemonicParsing="false" onAction="#setName" text="Set Name" />
+      <ListView fx:id="player" layoutX="14.0" layoutY="71.0" prefHeight="104.0" prefWidth="122.0" />
+      <Button fx:id="setName" layoutX="36.0" layoutY="396.0" mnemonicParsing="false" onAction="#setName" text="Set Name" />
    </children>
 </Pane>

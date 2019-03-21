@@ -68,10 +68,61 @@ public class GUIupdater implements Runnable {
                     display.setImage(null);
                     display.setImage(finalMessage.data());
                     whatIsTheDrawing.setText(finalMessage.text());
+                    myController.ableSendButton();
                 }
                 if (finalMessage.type() == 3) { //guess
                     System.out.println("guess DID work");
                     turn.setText(finalMessage.sender() + " got it right!");
+                    if (player.getItems().contains(finalMessage.sender())) {
+                        player.getItems().remove(finalMessage.sender());
+                        player.getItems().add(finalMessage.sender() + ": 1");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 1")) {
+                        player.getItems().remove(finalMessage.sender() + ": 1");
+                        player.getItems().add(finalMessage.sender() + ": 2");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 2")) {
+                        player.getItems().remove(finalMessage.sender() + ": 2");
+                        player.getItems().add(finalMessage.sender() + ": 3");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 3")) {
+                        player.getItems().remove(finalMessage.sender() + ": 3");
+                        player.getItems().add(finalMessage.sender() + ": 4");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 4")) {
+                        player.getItems().remove(finalMessage.sender() + ": 4");
+                        player.getItems().add(finalMessage.sender() + ": 5");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 5")) {
+                        player.getItems().remove(finalMessage.sender() + ": 5");
+                        player.getItems().add(finalMessage.sender() + ": 6");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 6")) {
+                        player.getItems().remove(finalMessage.sender() + ": 6");
+                        player.getItems().add(finalMessage.sender() + ": 7");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 7")) {
+                        player.getItems().remove(finalMessage.sender() + ": 7");
+                        player.getItems().add(finalMessage.sender() + ": 8");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 8")) {
+                        player.getItems().remove(finalMessage.sender() + ": 8");
+                        player.getItems().add(finalMessage.sender() + ": 9");
+                        return;
+                    }
+                    if (player.getItems().contains(finalMessage.sender() + ": 9")) {
+                        player.getItems().remove(finalMessage.sender() + ": 9");
+                        player.getItems().add(finalMessage.sender() + ": 10 and wins");
+                        return;
+                    }
                 }
                 if (finalMessage.type() == 4) { //drawer
                     System.out.println("drawer DID work");
@@ -98,6 +149,7 @@ public class GUIupdater implements Runnable {
                     label2.setText("Are you ready to guess?");
                     send.setText("Guess");
                     myController.setGuesserMode();
+                    myController.disableDrawButton();
                     turn.setText(finalMessage.sender() + " is drawing");
                 }
             });

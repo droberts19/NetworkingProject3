@@ -44,7 +44,6 @@ public class Controller {
     public TextField yourNameText;
     public Label label4;
     public Button draw;
-    public Button guess;
     public Label turn;
     public ListView<String> player;
     public Button setName;
@@ -55,7 +54,7 @@ public class Controller {
     private boolean serverMode;
     static boolean connected;
     private ArrayList<String> nameOfClients;
-    private boolean correct = false;
+    private boolean correct = true;
     private boolean didNameSet = false;
 
     public void initialize() {
@@ -70,8 +69,6 @@ public class Controller {
         Thread thread1 = new Thread(sendTransmit);
         thread1.setName("GUI Updater Thread");
         thread1.start();
-
-        PictureSender
 
         portText.setText("5000");
 
@@ -149,8 +146,58 @@ public class Controller {
                     Thread.currentThread().yield();
                 }
                 if (label4.getText().equals("YAY") || turn.getText().equals("YOU got it right!")) {
-                    //delay(5000);
-                    setDrawerMode();
+                    draw.setDisable(false);
+                    send.setDisable(true);
+                    if (player.getItems().contains(yourNameText.getText())) {
+                        player.getItems().remove(yourNameText.getText());
+                        player.getItems().add(yourNameText.getText() + ": 1");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 1")) {
+                        player.getItems().remove(yourNameText.getText() + ": 1");
+                        player.getItems().add(yourNameText.getText() + ": 2");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 2")) {
+                        player.getItems().remove(yourNameText.getText() + ": 2");
+                        player.getItems().add(yourNameText.getText() + ": 3");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 3")) {
+                        player.getItems().remove(yourNameText.getText() + ": 3");
+                        player.getItems().add(yourNameText.getText() + ": 4");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 4")) {
+                        player.getItems().remove(yourNameText.getText() + ": 4");
+                        player.getItems().add(yourNameText.getText() + ": 5");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 5")) {
+                        player.getItems().remove(yourNameText.getText() + ": 5");
+                        player.getItems().add(yourNameText.getText() + ": 6");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 6")) {
+                        player.getItems().remove(yourNameText.getText() + ": 6");
+                        player.getItems().add(yourNameText.getText() + ": 7");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 7")) {
+                        player.getItems().remove(yourNameText.getText() + ": 7");
+                        player.getItems().add(yourNameText.getText() + ": 8");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 8")) {
+                        player.getItems().remove(yourNameText.getText() + ": 8");
+                        player.getItems().add(yourNameText.getText() + ": 9");
+                        return;
+                    }
+                    if (player.getItems().contains(yourNameText.getText() + ": 9")) {
+                        player.getItems().remove(yourNameText.getText() + ": 9");
+                        player.getItems().add(yourNameText.getText() + ": 10 and wins");
+                        return;
+                    }
                 }
             } else {
                 label4.setText("NOO");
@@ -161,6 +208,7 @@ public class Controller {
             while (!outQueue.put(sendMessage)) {
                 Thread.currentThread().yield();
             }
+            send.setDisable(true);
         }
     }
 
@@ -180,9 +228,18 @@ public class Controller {
     public void setGuesserMode() {
         clear();
         guesser = true;
+        send.setDisable(true);
         label1.setText("What is your guess?");
         label2.setText("Are you ready to guess?");
         send.setText("Guess");
+    }
+
+    public void disableDrawButton() {
+        draw.setDisable(true);
+    }
+
+    public void ableSendButton() {
+        send.setDisable(false);
     }
 
     public void sendGuesserMsg() {
@@ -196,6 +253,9 @@ public class Controller {
     public void setDrawerMode() {
         clear();
         guesser = false;
+        correct = false;
+        draw.setDisable(true);
+        send.setDisable(false);
         turn.setText("YOU are drawing");
         label1.setText("What did you draw?");
         label2.setText("Are you done drawing?");
