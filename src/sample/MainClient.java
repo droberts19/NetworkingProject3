@@ -24,8 +24,9 @@ public class MainClient extends Application {
 
         controller = loader.getController();
         controller.setClientMode();
-        //controller.setDrawerMode();
         controller.setStage(primaryStage);
+        controller.setGuesserMode();
+
     }
 
     public static void main(String[] args) {

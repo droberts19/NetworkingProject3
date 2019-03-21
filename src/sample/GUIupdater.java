@@ -41,6 +41,11 @@ public class GUIupdater implements Runnable {
         canvas = rc;
         myController = controller;
     }
+//Get rid of guess button
+    //A thread that sends the draw as a message
+        //Get rid of send button
+            //Put variables into a for loop so that it continously sends drawing as a message
+
 
 
     public void run() {

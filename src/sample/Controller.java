@@ -71,6 +71,8 @@ public class Controller {
         thread1.setName("GUI Updater Thread");
         thread1.start();
 
+        PictureSender
+
         portText.setText("5000");
 
         canvas.setCursor(Cursor.CROSSHAIR);
@@ -126,6 +128,14 @@ public class Controller {
             }
             System.out.println("Did delay of " + x / 1000 + " secs");
             return;
+    }
+
+    public void sendPicture() {
+        Image sendPic = getImage(lineGroup);
+        Message sendMessage = new Message(yourNameText.getText(), sendPic, guessText.getText(), 2);
+        while (!outQueue.put(sendMessage)) {
+            Thread.currentThread().yield();
+        }
     }
 
     public void send() {
