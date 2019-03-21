@@ -117,17 +117,30 @@ public class Controller {
         label3.setText("");
         label4.setText("");
         guessText.setText("");
-        turn.setText("");
+    }
+
+    private void delay(int x) {
+            try {
+                Thread.sleep(x);
+            } catch (InterruptedException e) {
+            }
+            System.out.println("Did delay of " + x / 1000 + " secs");
+            return;
     }
 
     public void send() {
         if (guesser) {
             if (guessText.getText().equals(label3.getText())) {
                 label4.setText("YAY");
+                turn.setText("YOU got it right!");
                 Image sendPic = getImage(lineGroup);
                 Message sendMessage3 = new Message(yourNameText.getText(), sendPic, guessText.getText(), 3);
                 while (!outQueue.put(sendMessage3)) {
                     Thread.currentThread().yield();
+                }
+                if (label4.getText().equals("YAY") || turn.getText().equals("YOU got it right!")) {
+                    //delay(5000);
+                    setDrawerMode();
                 }
             } else {
                 label4.setText("NOO");
@@ -157,28 +170,35 @@ public class Controller {
     public void setGuesserMode() {
         clear();
         guesser = true;
-        Image sendPic2 = getImage(lineGroup);
-        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 4);
-        while (!outQueue.put(draw)) {
-            Thread.currentThread().yield();
-        }
         label1.setText("What is your guess?");
         label2.setText("Are you ready to guess?");
         send.setText("Guess");
     }
 
+    public void sendGuesserMsg() {
+        Image sendPic2 = getImage(lineGroup);
+        Message draw = new Message(yourNameText.getText(), sendPic2, guessText.getText(), 4);
+        while (!outQueue.put(draw)) {
+            Thread.currentThread().yield();
+        }
+    }
+
     public void setDrawerMode() {
         clear();
         guesser = false;
+        turn.setText("YOU are drawing");
+        label1.setText("What did you draw?");
+        label2.setText("Are you done drawing?");
+        send.setText("Send");
         Image sendPic3 = getImage(lineGroup);
         Message guess = new Message(yourNameText.getText(), sendPic3, guessText.getText(), 5);
         while (!outQueue.put(guess)) {
             Thread.currentThread().yield();
         }
-        turn.setText(yourNameText.getText() + " is drawing");
-        label1.setText("What did you draw?");
-        label2.setText("Are you done drawing?");
-        send.setText("Send");
+    }
+
+    public void sendDrawerMsg() {
+
     }
 
     public void setStage(Stage theStage) {
