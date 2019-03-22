@@ -271,6 +271,7 @@ public class Controller {
         while (!outQueue.put(guess)) {
             Thread.currentThread().yield();
         }
+
     }
 
     public void sendDrawerMsg() {
@@ -280,7 +281,6 @@ public class Controller {
     public void setStage(Stage theStage) {
         stage = theStage;
     }
-
 
 
     void setServerMode() {
@@ -294,15 +294,12 @@ public class Controller {
         }
     }
 
-
     void setClientMode() {
         serverMode = false;
         beginGameButton.setText("Connect");
         // display the IP address for the local computer
         IPAddressText.setText("10.85.216.236");
     }
-
-
 
     public void startButtonPressed() {
         // If we're already connected, start button should be disabled

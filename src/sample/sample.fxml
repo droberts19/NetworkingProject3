@@ -41,7 +41,7 @@
             <Font size="48.0" />
          </font></Label>
       <Button fx:id="draw" layoutX="591.0" layoutY="66.0" mnemonicParsing="false" onAction="#setDrawerMode" text="Drawer" />
-      <Label fx:id="turn" layoutX="224.0" layoutY="343.0" prefHeight="27.0" prefWidth="258.0" textAlignment="CENTER">
+      <Label fx:id="turn" layoutX="217.0" layoutY="343.0" prefHeight="27.0" prefWidth="258.0" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -50,8 +50,8 @@
       <Button fx:id="setName" layoutX="37.0" layoutY="329.0" mnemonicParsing="false" onAction="#setName" text="Set Name" />
       <Group fx:id="lineGroup">
          <children>
-            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="295.0" layoutX="148.0" layoutY="49.0" stroke="BLACK" strokeType="INSIDE" width="396.0" />
             <ImageView fx:id="display" fitHeight="294.0" fitWidth="396.0" layoutX="148.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle fx:id="canvas" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="295.0" layoutX="148.0" layoutY="49.0" stroke="BLACK" strokeType="INSIDE" width="396.0" />
          </children>
       </Group>
    </children>

@@ -153,6 +153,6 @@ public class GUIupdater implements Runnable {
                     turn.setText(finalMessage.sender() + " is drawing");
                 }
             });
-            }
+        }
     }
 }
