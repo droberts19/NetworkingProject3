@@ -27,7 +27,19 @@ public class GUIupdater implements Runnable {
     private Controller myController;
 
     GUIupdater(SyncData sd, Controller controller, ImageView iv, Label lb, ListView<String> pl, ArrayList<String> al, Label tr, Label l1, Label l2, Button sn, TextField tx, Group gp, Rectangle rc) {
-
+        syncData = sd;
+        display = iv;
+        whatIsTheDrawing = lb;
+        player = pl;
+        list = al;
+        turn = tr;
+        label1 = l1;
+        label2 = l2;
+        send = sn;
+        guessText = tx;
+        lineGroup = gp;
+        canvas = rc;
+        myController = controller;
     }
 //Get rid of guess button
     //A thread that sends the draw as a message
