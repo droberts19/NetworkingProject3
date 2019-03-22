@@ -61,9 +61,7 @@ public class Controller {
 
         nameOfClients = new ArrayList<String>();
 
-        inQueue = new SyncData();
-        outQueue = new SyncData();
-        connected = false;
+
 
         GUIupdater sendTransmit = new GUIupdater(inQueue, Controller.this, display, label3, player, nameOfClients, turn, label1, label2, send, guessText, lineGroup, canvas);
         Thread thread1 = new Thread(sendTransmit);
