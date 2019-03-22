@@ -47,7 +47,7 @@ public class Controller {
     public Label turn;
     public ListView<String> player;
     public Button setName;
-    private boolean guesser;
+    public boolean guesser = true;
     private Stage stage;
     private SyncData inQueue;
     private SyncData outQueue;
@@ -69,6 +69,10 @@ public class Controller {
         Thread thread1 = new Thread(sendTransmit);
         thread1.setName("GUI Updater Thread");
         thread1.start();
+
+        PictureSender pictureThread = new PictureSender(Controller.this);
+        Thread thread2 = new Thread(pictureThread);
+        thread2.start();
 
         portText.setText("5000");
 

@@ -1,6 +1,9 @@
 package sample;
 
-public class PictureSender extends Runnable {
+import javafx.application.Platform;
+
+public class PictureSender implements Runnable {
+
     Controller myController;
 
     PictureSender(Controller c) {
@@ -9,11 +12,15 @@ public class PictureSender extends Runnable {
 
     public void run() {
         while (!Thread.interrupted()) {
-            myController.sendPicture();
-            try {
-                Thread.sleep(500);
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            if (myController.guesser == false) {
+                Platform.runLater(() -> {
+                    myController.sendPicture();
+                });
+                try {
+                    Thread.sleep(500);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
