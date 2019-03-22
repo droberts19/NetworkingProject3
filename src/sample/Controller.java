@@ -70,11 +70,13 @@ public class Controller {
         thread1.setName("GUI Updater Thread");
         thread1.start();
 
+
+        portText.setText("5000");
+
         PictureSender pictureThread = new PictureSender(Controller.this);
         Thread thread2 = new Thread(pictureThread);
         thread2.start();
 
-        portText.setText("5000");
 
         canvas.setCursor(Cursor.CROSSHAIR);
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
