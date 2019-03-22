@@ -77,7 +77,6 @@ public class Controller {
         Thread thread2 = new Thread(pictureThread);
         thread2.start();
 
-
         canvas.setCursor(Cursor.CROSSHAIR);
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
 
@@ -204,6 +203,7 @@ public class Controller {
                         player.getItems().add(yourNameText.getText() + ": 10 and wins");
                         return;
                     }
+
                 }
             } else {
                 label4.setText("NOO");
