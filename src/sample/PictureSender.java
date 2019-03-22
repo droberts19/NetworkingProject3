@@ -2,8 +2,7 @@ package sample;
 
 import javafx.application.Platform;
 
-public class PictureSender implements Runnable {
-
+public class  PictureSender implements Runnable {
     Controller myController;
 
     PictureSender(Controller c) {
