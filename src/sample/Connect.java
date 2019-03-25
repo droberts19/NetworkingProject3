@@ -17,11 +17,10 @@ public class Connect implements Runnable{
     private TextField statusText;
     private TextField yourNameText;
 
-    Connect(int port, SyncData inQ, SyncData outQ, TextField status, TextField name) {
+    Connect(int port, SyncData inQ, SyncData outQ, TextField name) {
         connectionPort = port;
         inQueue = inQ;
         outQueue = outQ;
-        statusText = status;
         yourNameText = name;
         if (MainServer.multicastMode) {
             clientOutputStreams = new ArrayList<ObjectOutputStream>();
@@ -41,7 +40,6 @@ public class Connect implements Runnable{
 
 
             // Start listening for client connections
-            Platform.runLater(() -> statusText.setText("Listening on port " + connectionPort));
             connectionSocket = new ServerSocket(connectionPort);
 
             while (Controller.connected && !Thread.interrupted()) {
@@ -64,15 +62,15 @@ public class Connect implements Runnable{
                 if (MainServer.multicastMode) {
                     // collect all output streams to clients, so that server can multicast to all clients
                     clientOutputStreams.add(dataWriter);
-                    communicationOut = new CommunicationOut(socketServerSide, clientOutputStreams, outQueue, statusText);
+                    communicationOut = new CommunicationOut(socketServerSide, clientOutputStreams, outQueue);
                 } else {
-                    communicationOut = new CommunicationOut(socketServerSide, dataWriter, outQueue, statusText);
+                    communicationOut = new CommunicationOut(socketServerSide, dataWriter, outQueue);
                 }
                 Thread communicationOutThread = new Thread(communicationOut);
                 communicationOutThread.start();
 
                 //   Thread 2: handles communication FROM that client TO server
-                CommunicationIn communicationIn = new CommunicationIn(socketServerSide, dataReader, inQueue, outQueue, statusText, yourNameText);
+                CommunicationIn communicationIn = new CommunicationIn(socketServerSide, dataReader, inQueue, outQueue, yourNameText);
                 Thread communicationInThread = new Thread(communicationIn);
                 communicationInThread.start();
             }

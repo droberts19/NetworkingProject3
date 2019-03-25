@@ -18,15 +18,12 @@ public class GUIupdater implements Runnable {
     private ArrayList<String> list;
     private Label turn;
     private Label label1;
-    private Label label2;
-    private Label label3;
-    private Button send;
     private Group lineGroup;
     private Rectangle canvas;
     private TextField guessText;
     private Controller myController;
 
-    GUIupdater(SyncData sd, Controller controller, ImageView iv, Label lb, ListView<String> pl, ArrayList<String> al, Label tr, Label l1, Label l2, Button sn, TextField tx, Group gp, Rectangle rc) {
+    GUIupdater(SyncData sd, Controller controller, ImageView iv, Label lb, ListView<String> pl, ArrayList<String> al, Label tr, Label l1, TextField tx, Group gp, Rectangle rc) {
         syncData = sd;
         display = iv;
         whatIsTheDrawing = lb;
@@ -34,8 +31,6 @@ public class GUIupdater implements Runnable {
         list = al;
         turn = tr;
         label1 = l1;
-        label2 = l2;
-        send = sn;
         guessText = tx;
         lineGroup = gp;
         canvas = rc;
@@ -132,9 +127,7 @@ public class GUIupdater implements Runnable {
                     lineGroup.getChildren().add(display);
                     lineGroup.getChildren().add(canvas);
                     guessText.setText("");
-                    label1.setText("What did you draw?");
-                    label2.setText("Are you done drawing?");
-                    send.setText("Send");
+                    label1.setText("What are you drawing?");
                     myController.setDrawerMode();
                 }
                 if (finalMessage.type() == 5) { //guesser
@@ -146,8 +139,6 @@ public class GUIupdater implements Runnable {
                     lineGroup.getChildren().add(canvas);
                     guessText.setText("");
                     label1.setText("What is your guess?");
-                    label2.setText("Are you ready to guess?");
-                    send.setText("Guess");
                     myController.setGuesserMode();
                     myController.disableDrawButton();
                     turn.setText(finalMessage.sender() + " is drawing");

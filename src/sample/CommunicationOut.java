@@ -17,19 +17,17 @@ public class CommunicationOut implements Runnable {
 
     // CommunicationOut gets data from the Program's outQueue and writes it to 1 or many Sockets
 
-    CommunicationOut(Socket s, ObjectOutputStream out, SyncData outQ, TextField status) {
+    CommunicationOut(Socket s, ObjectOutputStream out, SyncData outQ) {
         socket = s;
         writer = out;
         outQueue = outQ;
-        statusText = status;
         serverMode = false;
     }
 
-    CommunicationOut(Socket s, ArrayList<ObjectOutputStream> outs, SyncData outQ, TextField status) {
+    CommunicationOut(Socket s, ArrayList<ObjectOutputStream> outs, SyncData outQ) {
         socket = s;
         outStreams = outs;
         outQueue = outQ;
-        statusText = status;
         serverMode = true;
     }
 
@@ -65,8 +63,6 @@ public class CommunicationOut implements Runnable {
                     writer.writeObject(message);
                     writer.flush();
                 }
-
-                Platform.runLater(() -> statusText.setText("SENT: " + finalMessage));
                 System.out.println("CommunicationOut SENT: " + message);
             }
 
@@ -77,7 +73,6 @@ public class CommunicationOut implements Runnable {
         } catch (Exception ex) {
             if (Controller.connected) {
                 ex.printStackTrace();
-                Platform.runLater(() -> statusText.setText("CommunicationOut: networking failed. Exiting...."));
             }
         }
 
@@ -87,7 +82,6 @@ public class CommunicationOut implements Runnable {
             System.out.println("CommunicationOut thread DONE; reader and socket closed.");
         } catch (Exception ex) {
             ex.printStackTrace();
-            Platform.runLater(() -> statusText.setText("CommunicationOut: reader and socket closing failed...."));
         }
     }
 }

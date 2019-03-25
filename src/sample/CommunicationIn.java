@@ -18,14 +18,13 @@ public class CommunicationIn implements Runnable {
 
     // CommunicationIn reads from a Socket and puts data into the Program's inQueue
 
-    CommunicationIn(Socket s, ObjectInputStream in, SyncData inQ, SyncData outQ, TextField status, TextField name) {
+    CommunicationIn(Socket s, ObjectInputStream in, SyncData inQ, SyncData outQ, TextField name) {
         socket = s;
         messageReader = in;
         // CommunicationIn puts data read from the socket into the inQueue
         inQueue = inQ;
         // Only the server needs the outQueue from CommunicationIn
         outQueue = outQ;
-        statusText = status;
         yourNameText = name;
         serverMode = (outQ != null);
     }
@@ -52,7 +51,6 @@ public class CommunicationIn implements Runnable {
                 Message finalMessage = message;
                 System.out.println("CommunicationIn: RECEIVING " + message);
                 // Receiving incoming message!!!
-                Platform.runLater(() -> statusText.setText("RECEIVED: " + finalMessage));
 
                 // ignore any messages sent by yourself: only put messages from others into your inQueue
                 if (serverMode || !message.sender().equals(yourNameText.getText())) {
@@ -63,7 +61,6 @@ public class CommunicationIn implements Runnable {
                         putSucceeded = inQueue.put(message);
                     }
                     System.out.println("CommunicationIn PUT into InputQueue: " + message);
-                    Platform.runLater(() -> statusText.setText("PUT into InputQueue: " + finalMessage));
 
                     // IF SERVER and MULTICAST: also put that incoming message on the OutputQueue so ALL clients see it
                     if (serverMode && MainServer.multicastMode) {
@@ -73,7 +70,6 @@ public class CommunicationIn implements Runnable {
                             putSucceeded = outQueue.put(message);
                         }
                         System.out.println("CommunicationIn MULTICAST into OutputQueue: " + message);
-                        Platform.runLater(() -> statusText.setText("MULTICAST into OutputQueue: " + finalMessage));
 
                     }
                 }
@@ -87,7 +83,6 @@ public class CommunicationIn implements Runnable {
             // nothing to do
         } catch (Exception ex) {
             ex.printStackTrace();
-            Platform.runLater(() -> statusText.setText("CommunicationIn: networking failed. Exiting...."));
         }
 
         try {
@@ -96,7 +91,6 @@ public class CommunicationIn implements Runnable {
             System.out.println("CommunicationIn thread DONE; reader and socket closed.");
         } catch (Exception ex) {
             ex.printStackTrace();
-            Platform.runLater(() -> statusText.setText("CommunicationIn: reader and socket closing failed...."));
         }
 
     }

@@ -11,12 +11,12 @@ public class  PictureSender implements Runnable {
 
     public void run() {
         while (!Thread.interrupted()) {
-            if (myController.guesser == false) {
+            if (!myController.guesser) {
                 Platform.runLater(() -> {
                     myController.sendPicture();
                 });
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
